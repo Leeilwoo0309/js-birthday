@@ -1,0 +1,27 @@
+@import url("https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@latest/nanumbarungothicsubset.css");
+
+body {
+    font-family: 'NanumBarunGothic';
+}
+
+.stockList {
+    float: left;
+    padding: 20px;
+    margin: 5px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 10px;
+
+    /* background-color: red; */
+}
+
+.stockInfo {
+    float: right;
+    width:20%
+}
+
+#started {
+    grid-template-columns: 300px 1000px;
+    grid-template-rows: 1000px 1000px;
+    display: grid;
+}

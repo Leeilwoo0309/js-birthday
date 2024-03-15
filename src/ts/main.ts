@@ -1,6 +1,7 @@
 let isStart: boolean = false;
 let money: number = 12000;
 let debt: number = 1900000000;
+let currentStock: number | undefined = undefined;
 let stock: Stock[] = [
     {
         name: 'GIA (饑餓)',
@@ -87,12 +88,26 @@ let stock: Stock[] = [
 const startBtn: HTMLSpanElement = document.querySelector('#startButton');
 const stockListDiv: HTMLDivElement = document.querySelector('#stockList');
 
-console.log(stockListDivW);
+console.log(stockListDiv);
 
 startBtn.addEventListener('click', () => {
     console.log('김치');
 })
 
 stock.forEach((e, i) => {
-    stockListDiv.innerHTML('김치')
+    let stockList: HTMLDivElement = document.createElement("div");
+    stockList.id = `stock-${i}`;
+    stockList.classList.add('stockList');
+
+    stockList.append(`${e.name}: \\${e.price}`);
+
+    stockListDiv.appendChild(stockList);
+});
+
+const stockListDivs: NodeList = document.querySelectorAll('.stockList');
+
+stockListDivs.forEach((e, i) => {
+    e.addEventListener('click', () => {
+        console.log(i);
+    })
 })

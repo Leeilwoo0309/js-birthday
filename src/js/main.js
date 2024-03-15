@@ -1,6 +1,7 @@
 var isStart = false;
 var money = 12000;
 var debt = 1900000000;
+var currentStock = undefined;
 var stock = [
     {
         name: 'GIA (饑餓)',
@@ -85,10 +86,20 @@ var stock = [
 ];
 var startBtn = document.querySelector('#startButton');
 var stockListDiv = document.querySelector('#stockList');
-console.log(stockListDivW);
+console.log(stockListDiv);
 startBtn.addEventListener('click', function () {
     console.log('김치');
 });
 stock.forEach(function (e, i) {
-    stockListDiv.innerHTML('김치');
+    var stockList = document.createElement("div");
+    stockList.id = "stock-".concat(i);
+    stockList.classList.add('stockList');
+    stockList.append("".concat(e.name, ": \\").concat(e.price));
+    stockListDiv.appendChild(stockList);
+});
+var stockListDivs = document.querySelectorAll('.stockList');
+stockListDivs.forEach(function (e, i) {
+    e.addEventListener('click', function () {
+        console.log(i);
+    });
 });
