@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "outDir": "./src/js",
+        "rootDir": "./src/ts"
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
