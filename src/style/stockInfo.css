@@ -1,0 +1,21 @@
+#stockName {
+    font-size: 40px;
+}
+
+#stockPrice {
+    font-size: 20px;
+    color: rgb(32, 32, 32)
+}
+
+#stockChart  {
+    width: 700px;
+}
+
+#stockInfo {
+    grid-template-rows: 120px 1000px;
+    display: grid;
+    margin-left: 50px;
+}
+
+#chart {
+}

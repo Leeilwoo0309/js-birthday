@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/global.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../style/global.css">
+        <link rel="stylesheet" href="../style/stockInfo.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <title>[주성이 생일 선물] 초특급 어진이처럼 '주식'으로 돈벌기 시뮬레이터</title>
 </head>
 <body>
@@ -12,12 +14,40 @@
             <span id="startButton">Start</span>
         </div>
         <div id="started">
-            <div id="stockList"></div>
+            <div id="list">
+                <div id="status">
+                    <p>현재 돈: <span id="money">150,000</span>원</p>
+                    <p>총 주식 구매가: <span id="stockBoughtPrice">0</span>원</p>
+                    <p>
+                        현재 주가:  
+                        <span id="stockCurrentPrice">0원
+                            (<span id="priceUpDown">0</span>%)</span>
+                    </p>
+                </div>
+                <div id="menuList">
+                    <span class="menu">주식시장</span>
+                    <span class="menu">은행</span>
+                    <span class="menu">상점</span>
+                </div>
+                <div id="stockList"></div>
+            </div>
             <div id="stockInfo">
-                <p>이름</p>
+                <div id="news">
+                    <p>TV 구매 시 오픈</p>
+                </div>
+                <div id="chart">
+                    <h2 id="stockName">GIA <span id="stockPrice">30,000</span></h2>
+                    <canvas id="stockChart"></canvas>
+                    <div>
+                        <p>매수</p>
+                        <p>매도</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
+    <script src="../js/update.js"></script>
+    <script src="../js/funcs.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -2,26 +2,70 @@
 
 body {
     font-family: 'NanumBarunGothic';
+    overflow: hidden;
 }
 
 .stockList {
     float: left;
     padding: 20px;
     margin: 5px;
-    width: 200px;
+    margin-right: 20px;
+    width: 250px;
     border: 1px solid black;
     border-radius: 10px;
-
+    
     /* background-color: red; */
+}
+
+#stockList {
+    height: 600px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#status {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    margin-right: 25px;
+    border: 1px solid black;
+    border-radius: 10px;
+    grid-template-rows: 33% 33% 33%;
+    display: grid;
+    align-items: center;
+}
+
+#status.p {
+    align-self: center;
+
 }
 
 .stockInfo {
     float: right;
-    width:20%
+    width:20%;
 }
 
 #started {
-    grid-template-columns: 300px 1000px;
-    grid-template-rows: 1000px 1000px;
+    grid-template-columns: 320px 1000px;
+    /* grid-template-rows: 1000px 1000px; */
+    display: grid;
+}
+
+#list {
+    grid-template-rows: 120px 60px 1000px;
+    display: grid;
+}
+
+.menu {
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    align-self: center;
+}
+
+#menuList {
+    grid-template-columns: 100px 100px 100px;
     display: grid;
 }

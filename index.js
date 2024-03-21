@@ -1,10 +1,34 @@
-const express = require('express');
-const app = express();
+const { app, BrowserWindow, Menu } = require('electron')
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/src/html/index.html');
-});
+function createWindow () {
+    const win = new BrowserWindow({
+        width: 1600,
+        height: 900,
+        resizable: false,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true
+        }
+    })
 
-app.listen(3000, () => {
-    console.log('3000에서 개쩌는 실행중..')
+    win.loadFile('src/html/index.html')
+
+    // win.on('closed', () => {
+    //     win = null;
+    // })
+}
+
+app.on('ready',createWindow)
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
+})
+
+app.on('activate', () => {
+    if (win === null) {
+        createWindow()
+    }
 })
