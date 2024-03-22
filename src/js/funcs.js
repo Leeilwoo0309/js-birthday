@@ -11,10 +11,11 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 function drawChart(changes) {
     var _a;
     stockChartDraw === null || stockChartDraw === void 0 ? void 0 : stockChartDraw.destroy();
-    console.log(changes.length, changes.length - 20 > 0 ? changes.length - 20 : 0);
     var change = __spreadArray([], changes, true);
     var data = change === null || change === void 0 ? void 0 : change.splice(change.length - 20 > 0 ? change.length - 20 : 0, change.length);
     var label = (_a = Array(data === null || data === void 0 ? void 0 : data.length)) === null || _a === void 0 ? void 0 : _a.fill('');
+    // stockChart.width = '800px';
+    // stockChart.height = '500px';
     var stockChartDraw = new Chart(stockChart, {
         type: 'line',
         data: {

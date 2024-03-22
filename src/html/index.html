@@ -37,16 +37,21 @@
                 </div>
                 <div id="chart">
                     <h2 id="stockName">GIA <span id="stockPrice">30,000</span></h2>
-                    <canvas id="stockChart"></canvas>
-                    <div>
-                        <p>매수</p>
-                        <p>매도</p>
+                    <div id="chartDiv">
+                        <canvas id="stockChart" width="600px"></canvas>
+                    </div>
+                    <div id="bs">
+                        <span id="buy" class="btn">매수</span>
+                        <input name="amount" id="buySellGatsu">
+                        <span id="sell" class="btn">매도</span>
+                        <p>총 구매가: \ <span id="sellOrBuyPrice">0</span></p>
                     </div>
                 </div>
             </div>
         </div>
     </main>
     <script src="../js/update.js"></script>
+    <script src="../js/trade.js"></script>
     <script src="../js/funcs.js"></script>
     <script src="../js/main.js"></script>
 </body>

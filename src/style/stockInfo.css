@@ -9,12 +9,18 @@
 
 #stockChart  {
     width: 700px;
+    height: 300px;
 }
 
 #stockInfo {
     grid-template-rows: 120px 1000px;
     display: grid;
     margin-left: 50px;
+}
+
+#chartDiv {
+    width: 1000px;
+    height: 500px;
 }
 
 #chart {

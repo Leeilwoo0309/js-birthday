@@ -1,7 +1,8 @@
 var isStart = false;
 var money = 12000;
 var debt = 1900000000;
-var currentStock = undefined;
+var currentStockMoney = 0;
+var boughtStockMoney = 0;
 var nowInfo = 0;
 var charts = [];
 var stock = [
@@ -157,9 +158,10 @@ var items = [
 var startBtn = document.querySelector('#startButton');
 var stockListDiv = document.querySelector('#stockList');
 var stockChart = document.querySelector('#stockChart');
-console.log(stockListDiv);
+var buyOrSellPriceDisplayer = document.querySelector('#sellOrBuyPrice');
+var buySellGatsu = document.querySelector('#buySellGatsu');
 startBtn.addEventListener('click', function () {
-    //시작
+    // 시작
 });
 stock.forEach(function (e, i) {
     var stockList = document.createElement("div");
@@ -169,31 +171,40 @@ stock.forEach(function (e, i) {
     stockListDiv.appendChild(stockList);
 });
 var stockListDivs = document.querySelectorAll('.stockList');
+// 주식 어떤거 보고잇는지
 stockListDivs.forEach(function (e, i) {
     e.addEventListener('click', function () {
+        document.querySelector("#stock-".concat(nowInfo)).classList.remove('on');
         nowInfo = i;
         charts.push(drawChart(stock[i].priceChange));
+        document.querySelector("#stock-".concat(nowInfo)).classList.add('on');
         updateText(stock[i]);
     });
 });
+buySellGatsu.addEventListener("input", function (e) {
+    priceUpdate();
+});
+// 1초마다 실행하는거 (주식 가격 바꾸기..)
 setInterval(function () {
     stock.forEach(function (e, i) {
-        var changeRatio = (Math.random() * 0.04) - 0.0195;
+        var changeRatio = (Math.random() * 0.01) - 0.005;
         var thisDiv = stockListDivs[i];
         e.price += Math.floor(changeRatio * e.price);
         if (Math.floor(changeRatio * e.price) == 0) {
             e.price += Math.floor(Math.random() * 10);
         }
         e.priceChange.push(e.price);
+        // 차트 그리는 거
         if (nowInfo == i) {
             charts.forEach(function (chart) {
                 chart.destroy();
             });
             charts.push(drawChart(e.priceChange));
             updateText(e);
+            //@ts-ignore
+            priceUpdate();
         }
         //@ts-ignore
         thisDiv.innerHTML = "".concat(e.name, " \\").concat(e.price);
     });
-    console.log(stock[0].priceChange);
 }, 1000);

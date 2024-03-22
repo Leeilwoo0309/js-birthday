@@ -3,6 +3,7 @@
 body {
     font-family: 'NanumBarunGothic';
     overflow: hidden;
+    user-select: none;
 }
 
 .stockList {
@@ -68,4 +69,41 @@ body {
 #menuList {
     grid-template-columns: 100px 100px 100px;
     display: grid;
+}
+
+.on {
+    background-color: rgb(235, 235, 235);
+}
+
+#bs {
+    /* display: flex; */
+    text-align: center;
+}
+
+#buy {
+    background-color: #ff7c7c;
+    
+    align-self: center;
+}
+
+#sell {
+    background-color: rgb(129, 129, 255);
+    
+    align-self: center;
+}
+
+.btn {
+    padding: 10px;
+    height:40px;
+    align-self: center;
+    width: 100px;
+    color: white;
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#buySellGatsu {
+    height: 40px;
+    text-align: center;
 }

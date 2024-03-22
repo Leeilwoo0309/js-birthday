@@ -1,10 +1,12 @@
 //@ts-nocheck
 function drawChart(changes: number[]) {
     stockChartDraw?.destroy();
-    console.log(changes.length, changes.length-20 > 0 ? changes.length - 20 : 0);
     let change = [...changes]
     const data = change?.splice(change.length-20 > 0 ? change.length - 20 : 0, change.length);
     const label = Array(data?.length)?.fill('')
+
+    // stockChart.width = '800px';
+    // stockChart.height = '500px';
 
     let stockChartDraw = new Chart(stockChart, {
         type: 'line',

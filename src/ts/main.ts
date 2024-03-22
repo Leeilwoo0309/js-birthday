@@ -1,7 +1,8 @@
 let isStart: boolean = false;
 let money: number = 12000;
 let debt: number = 1900000000;
-let currentStock: number | undefined = undefined;
+let currentStockMoney: number = 0;
+let boughtStockMoney: number = 0;
 let nowInfo: number = 0;
 let charts = [];
 let stock: Stock[] = [
@@ -158,12 +159,12 @@ let items: Item[] = [
 const startBtn: HTMLSpanElement = document.querySelector('#startButton');
 const stockListDiv: HTMLDivElement = document.querySelector('#stockList');
 const stockChart: HTMLCanvasElement = document.querySelector('#stockChart');
-
-console.log(stockListDiv);
+const buyOrSellPriceDisplayer: HTMLSpanElement = document.querySelector('#sellOrBuyPrice');
+const buySellGatsu: HTMLInputElement = document.querySelector('#buySellGatsu');
 
 startBtn.addEventListener('click', () => {
-    //시작
-})
+    // 시작
+});
 
 stock.forEach((e, i) => {
     let stockList: HTMLDivElement = document.createElement("div");
@@ -177,17 +178,27 @@ stock.forEach((e, i) => {
 
 const stockListDivs: NodeList = document.querySelectorAll('.stockList');
 
+// 주식 어떤거 보고잇는지
 stockListDivs.forEach((e, i) => {
     e.addEventListener('click', () => {
+        document.querySelector(`#stock-${nowInfo}`).classList.remove('on');
         nowInfo = i;
-        charts.push(drawChart(stock[i].priceChange))
+        charts.push(drawChart(stock[i].priceChange));
+
+        document.querySelector(`#stock-${nowInfo}`).classList.add('on');
         updateText(stock[i]);
     })
 });
 
+buySellGatsu.addEventListener("input", (e) => {
+    priceUpdate();
+})
+
+
+// 1초마다 실행하는거 (주식 가격 바꾸기..)
 setInterval(() => {
     stock.forEach((e, i) => {
-        const changeRatio = (Math.random() * 0.04) - 0.0195;
+        const changeRatio = (Math.random() * 0.01) - 0.005;
         const thisDiv = stockListDivs[i];
         e.price += Math.floor(changeRatio * e.price);
 
@@ -197,17 +208,20 @@ setInterval(() => {
 
         e.priceChange.push(e.price)
         
+        // 차트 그리는 거
         if (nowInfo == i) {
             charts.forEach(chart => {
                 chart.destroy();
             });
             charts.push(drawChart(e.priceChange))
             updateText(e);
+
+            //@ts-ignore
+            priceUpdate();
             }
 
         //@ts-ignore
         thisDiv.innerHTML = `${e.name} \\${e.price}`;
     });
 
-    console.log(stock[0].priceChange)
 }, 1000);
