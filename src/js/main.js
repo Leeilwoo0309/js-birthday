@@ -1,168 +1,15 @@
-var isStart = false;
-var money = 12000;
-var debt = 1900000000;
-var currentStockMoney = 0;
-var boughtStockMoney = 0;
-var nowInfo = 0;
-var charts = [];
-var stock = [
-    {
-        name: 'GIA (饑餓)',
-        price: 30000,
-        totalPrice: 0,
-        amount: 0,
-        max: 30000,
-        min: 30000,
-        priceChange: [30000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: '卌┕日 (십L일)',
-        price: 5000,
-        totalPrice: 0,
-        amount: 0,
-        max: 5000,
-        min: 5000,
-        priceChange: [5000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: 'YMT',
-        price: 5000,
-        totalPrice: 0,
-        amount: 0,
-        max: 5000,
-        min: 5000,
-        priceChange: [5000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: '주성 엔지니어링',
-        price: 24853,
-        totalPrice: 0,
-        amount: 0,
-        max: 24853,
-        min: 24853,
-        priceChange: [24853],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: 'SAMSUN-GT',
-        price: 75000,
-        totalPrice: 0,
-        amount: 0,
-        max: 75000,
-        min: 75000,
-        priceChange: [75000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: 'SJ약품',
-        price: 350,
-        totalPrice: 0,
-        amount: 0,
-        max: 350,
-        min: 350,
-        priceChange: [350],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: 'SJ약품',
-        price: 350,
-        totalPrice: 0,
-        amount: 0,
-        max: 350,
-        min: 350,
-        priceChange: [350],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: 'CJ 엔터테인먼트',
-        price: 150,
-        totalPrice: 0,
-        amount: 0,
-        max: 150,
-        min: 150,
-        priceChange: [150],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: '더불어민주당',
-        price: 1664000,
-        totalPrice: 0,
-        amount: 0,
-        max: 1664000,
-        min: 1664000,
-        priceChange: [1664000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: '국민의 힘',
-        price: 18720000,
-        totalPrice: 0,
-        amount: 0,
-        max: 18720000,
-        min: 18720000,
-        priceChange: [18720000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    }
-];
-var items = [
-    {
-        name: 'TV',
-        price: 1500000,
-        description: '주식에 대한 정보들을 알려줍니다.',
-        isBought: false
-    }
-];
 var startBtn = document.querySelector('#startButton');
 var stockListDiv = document.querySelector('#stockList');
+var bankListDiv = document.querySelector('#bank');
+var store = document.querySelector('#store');
 var stockChart = document.querySelector('#stockChart');
 var buyOrSellPriceDisplayer = document.querySelector('#sellOrBuyPrice');
 var buySellGatsu = document.querySelector('#buySellGatsu');
+var menu = document.querySelectorAll('.menu');
 startBtn.addEventListener('click', function () {
     // 시작
 });
+// 주식 있는거 그려줌
 stock.forEach(function (e, i) {
     var stockList = document.createElement("div");
     stockList.id = "stock-".concat(i);
@@ -170,7 +17,23 @@ stock.forEach(function (e, i) {
     stockList.append("".concat(e.name, ": \\").concat(e.price));
     stockListDiv.appendChild(stockList);
 });
+// 빚지는거 있는거 그려줌
+bank.forEach(function (e, i) {
+    var bankList = document.createElement("div");
+    bankList.id = "bank-".concat(i);
+    bankList.classList.add('bankList');
+    bankList.append("".concat(e.name, ": \\").concat(e.debt.max));
+    bankListDiv.appendChild(bankList);
+});
+items.forEach(function (e, i) {
+    var storeItem = document.createElement("div");
+    storeItem.id = "store-".concat(i);
+    storeItem.classList.add('storeItem');
+    storeItem.append("".concat(e.name, ": \\").concat(e.price, " [\"").concat(e.description, "\"]"));
+    store.appendChild(storeItem);
+});
 var stockListDivs = document.querySelectorAll('.stockList');
+var bankListDivs = document.querySelectorAll('.bank');
 // 주식 어떤거 보고잇는지
 stockListDivs.forEach(function (e, i) {
     e.addEventListener('click', function () {
@@ -185,6 +48,27 @@ buySellGatsu.addEventListener("input", function (e) {
     priceUpdate();
 });
 // 1초마다 실행하는거 (주식 가격 바꾸기..)
+menu.forEach(function (e, i) {
+    e.addEventListener('click', function () {
+        nowMenu = i;
+        if (nowMenu == 0) {
+            stockListDiv.classList.remove('off');
+            bankListDiv.classList.add('off');
+            store.classList.add('off');
+        }
+        else if (nowMenu == 1) {
+            stockListDiv.classList.add('off');
+            bankListDiv.classList.remove('off');
+            store.classList.add('off');
+        }
+        else if (nowMenu == 2) {
+            stockListDiv.classList.add('off');
+            bankListDiv.classList.add('off');
+            store.classList.remove('off');
+            console.log('김치');
+        }
+    });
+});
 setInterval(function () {
     stock.forEach(function (e, i) {
         var changeRatio = (Math.random() * 0.01) - 0.005;
@@ -206,5 +90,10 @@ setInterval(function () {
         }
         //@ts-ignore
         thisDiv.innerHTML = "".concat(e.name, " \\").concat(e.price);
+        if (e.amount > 0) {
+            var param = Math.floor((e.price * e.amount / e.totalPrice) * 10000 - 10000).toString();
+            //@ts-ignore
+            thisDiv.innerHTML = "".concat(e.name, " \\").concat(e.price, " (").concat(upOrDownPercenStringReturner(param), ")");
+        }
     });
 }, 1000);

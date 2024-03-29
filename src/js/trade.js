@@ -12,3 +12,15 @@ buyBtn.addEventListener('click', function () {
         alert('돈이 없어!!!!!!!!!!!');
     }
 });
+sellBtn.addEventListener('click', function () {
+    var amount = Number(buySellGatsu.value);
+    if (amount > 0) {
+        money += amount * stock[nowInfo].price * 0.94;
+        stock[nowInfo].amount -= Number(buySellGatsu.value);
+        stock[nowInfo].totalPrice -= amount * stock[nowInfo].price;
+        alert('판매 완료!!!!!!!!!');
+    }
+    else {
+        alert('가진 주식 없어!!!!!!!!!!!');
+    }
+});

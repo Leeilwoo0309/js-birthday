@@ -18,6 +18,30 @@ body {
     /* background-color: red; */
 }
 
+.bankList {
+    float: left;
+    padding: 20px;
+    margin: 5px;
+    margin-right: 20px;
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 10px;
+    
+    /* background-color: red; */
+}
+
+.storeItem {
+    float: left;
+    padding: 20px;
+    margin: 5px;
+    margin-right: 20px;
+    width: 250px;
+    border: 1px solid black;
+    border-radius: 10px;
+    
+    /* background-color: red; */
+}
+
 #stockList {
     height: 600px;
     overflow-y: scroll;
@@ -106,4 +130,16 @@ body {
 #buySellGatsu {
     height: 40px;
     text-align: center;
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+.off {
+    display: none;
 }

@@ -23,5 +23,12 @@
     height: 500px;
 }
 
-#chart {
+#stockType {
+    color: rgb(150, 150, 150);
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+#nowStockInfo {
+    margin-left: 40px;
 }

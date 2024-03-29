@@ -9,13 +9,23 @@ type Stock = {
     isArrive: boolean,
     extra: {
         type: string,
-        crisis: number
-    }
+        crisis: number,
+    },
 }
 
 type Item = {
     name: string,
     price: number,
     description: string,
-    isBought: boolean
+    isBought: boolean,
+}
+
+type Bank = {
+    name: string,
+    hasDebt: boolean,
+    debt: {
+        now: number,
+        max: number
+    },
+    interest: number
 }
