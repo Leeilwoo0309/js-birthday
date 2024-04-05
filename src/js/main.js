@@ -7,7 +7,11 @@ var buyOrSellPriceDisplayer = document.querySelector('#sellOrBuyPrice');
 var buySellGatsu = document.querySelector('#buySellGatsu');
 var menu = document.querySelectorAll('.menu');
 startBtn.addEventListener('click', function () {
-    // 시작
+    var startDiv = document.querySelector('#start');
+    var startDived = document.querySelector('#started');
+    startDiv.style.display = 'none';
+    startDived.style.display = '';
+    isStart = true;
 });
 // 주식 있는거 그려줌
 stock.forEach(function (e, i) {
@@ -70,30 +74,35 @@ menu.forEach(function (e, i) {
     });
 });
 setInterval(function () {
-    stock.forEach(function (e, i) {
-        var changeRatio = (Math.random() * 0.01) - 0.005;
-        var thisDiv = stockListDivs[i];
-        e.price += Math.floor(changeRatio * e.price);
-        if (Math.floor(changeRatio * e.price) == 0) {
-            e.price += Math.floor(Math.random() * 10);
-        }
-        e.priceChange.push(e.price);
-        // 차트 그리는 거
-        if (nowInfo == i) {
-            charts.forEach(function (chart) {
-                chart.destroy();
-            });
-            charts.push(drawChart(e.priceChange));
-            updateText(e);
+    if (isStart) {
+        stock.forEach(function (e, i) {
+            var changeRatio = (Math.random() * 0.01) - 0.005;
+            var thisDiv = stockListDivs[i];
+            e.price += Math.floor(changeRatio * e.price);
+            if (Math.floor(changeRatio * e.price) == 0) {
+                e.price += Math.floor(Math.random() * 10);
+            }
+            e.priceChange.push(e.price);
+            // 차트 그리는 거
+            if (nowInfo == i) {
+                charts.forEach(function (chart) {
+                    chart.destroy();
+                });
+                charts.push(drawChart(e.priceChange));
+                updateText(e);
+                //@ts-ignore
+                priceUpdate();
+            }
             //@ts-ignore
-            priceUpdate();
-        }
-        //@ts-ignore
-        thisDiv.innerHTML = "".concat(e.name, " \\").concat(e.price);
-        if (e.amount > 0) {
-            var param = Math.floor((e.price * e.amount / e.totalPrice) * 10000 - 10000).toString();
-            //@ts-ignore
-            thisDiv.innerHTML = "".concat(e.name, " \\").concat(e.price, " (").concat(upOrDownPercenStringReturner(param), ")");
-        }
-    });
+            thisDiv.innerHTML = "".concat(e.name, " \\").concat(e.price);
+            if (e.amount > 0) {
+                var param = Math.floor((e.price * e.amount / e.totalPrice) * 10000 - 10000).toString();
+                //@ts-ignore
+                thisDiv.innerHTML = "".concat(e.name, " \\").concat(e.price, " (").concat(upOrDownPercenStringReturner(param), ")");
+            }
+        });
+    }
 }, 1000);
+setInterval(function () {
+    startScreen();
+}, 50);

@@ -5,15 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../style/global.css">
         <link rel="stylesheet" href="../style/stockInfo.css">
+        <link rel="stylesheet" href="../style/start.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <title>[주성이 생일 선물] 초특급 어진이처럼 '주식'으로 돈벌기 시뮬레이터</title>
 </head>
 <body>
     <main role="main">
         <div id="start">
-            <span id="startButton">Start</span>
+            <p id="title"><span style="color:red">[★<span id="titleName">주성</span>이 생일 선물★]<br></span> 스님이 하늘을 날면?<br><span id="answer">어 중이 떠 중이</span></p>
+            <div id="startDiv">
+                <p id="startButton" class="btnStart">Start ((자동차의 시동을) 걸다)</p>
+                <p id="loadButton" class="btnStart">Load (얼룩이 지다)</p>
+            </div>
         </div>
-        <div id="started">
+        <div id="started" style="display: none;">
             <div id="list">
                 <div id="status">
                     <p>현재 돈: <span id="money">150,000</span>원</p>

@@ -8,7 +8,13 @@ const buySellGatsu: HTMLInputElement = document.querySelector('#buySellGatsu');
 const menu: NodeList = document.querySelectorAll('.menu');
 
 startBtn.addEventListener('click', () => {
-    // 시작
+    const startDiv: HTMLDivElement = document.querySelector('#start')
+    const startDived: HTMLDivElement = document.querySelector('#started')
+
+    startDiv.style.display = 'none';
+    startDived.style.display = '';
+    isStart = true;
+
 });
 
 // 주식 있는거 그려줌
@@ -64,7 +70,6 @@ buySellGatsu.addEventListener("input", (e) => {
 
 
 // 1초마다 실행하는거 (주식 가격 바꾸기..)
-
 menu.forEach((e, i) => {
     e.addEventListener('click', () => {
         nowMenu = i;
@@ -88,38 +93,44 @@ menu.forEach((e, i) => {
 })
 
 setInterval(() => {
-    stock.forEach((e, i) => {
-        const changeRatio = (Math.random() * 0.01) - 0.005;
-        const thisDiv = stockListDivs[i];
-
-        e.price += Math.floor(changeRatio * e.price);
-
-        if(Math.floor(changeRatio * e.price) == 0) {
-            e.price += Math.floor(Math.random() * 10);
-        }
-
-        e.priceChange.push(e.price)
-        
-        // 차트 그리는 거
-        if (nowInfo == i) {
-            charts.forEach(chart => {
-                chart.destroy();
-            });
-            charts.push(drawChart(e.priceChange))
-            updateText(e);
-
-            //@ts-ignore
-            priceUpdate();
+    if (isStart) {
+        stock.forEach((e, i) => {
+            const changeRatio = (Math.random() * 0.01) - 0.005;
+            const thisDiv = stockListDivs[i];
+    
+            e.price += Math.floor(changeRatio * e.price);
+    
+            if(Math.floor(changeRatio * e.price) == 0) {
+                e.price += Math.floor(Math.random() * 10);
             }
-
-        //@ts-ignore
-        thisDiv.innerHTML = `${e.name} \\${e.price}`;
-
-        if (e.amount > 0) {
-            let param = Math.floor((e.price * e.amount / e.totalPrice) * 10000 - 10000).toString(); 
+    
+            e.priceChange.push(e.price)
+            
+            // 차트 그리는 거
+            if (nowInfo == i) {
+                charts.forEach(chart => {
+                    chart.destroy();
+                });
+                charts.push(drawChart(e.priceChange))
+                updateText(e);
+    
+                //@ts-ignore
+                priceUpdate();
+                }
+    
             //@ts-ignore
-            thisDiv.innerHTML = `${e.name} \\${e.price} (${upOrDownPercenStringReturner(param)})`;
-        }
-    });
+            thisDiv.innerHTML = `${e.name} \\${e.price}`;
+    
+            if (e.amount > 0) {
+                let param = Math.floor((e.price * e.amount / e.totalPrice) * 10000 - 10000).toString(); 
+                //@ts-ignore
+                thisDiv.innerHTML = `${e.name} \\${e.price} (${upOrDownPercenStringReturner(param)})`;
+            }
+        });
+    }
 
 }, 1000);
+
+setInterval(() => {
+    startScreen();
+}, 50)

@@ -1,0 +1,14 @@
+.btnStart {
+    text-align: center;
+    color: white;
+    background-color: black;
+    border: 1px solid gray;
+    font-size: 100px;
+    width: 50%;
+}
+
+#startDiv {
+    align-self: center;
+    grid-template-columns: 50% 50%;
+    display: flex;
+}

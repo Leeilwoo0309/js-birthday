@@ -43,3 +43,7 @@ function drawChart(changes: number[]) {
 
     return stockChartDraw
 }
+
+// function randaaa(start: number, end: number): number {
+//     return Math.floor((Math.random() * (end-start+1)) + start);
+// }

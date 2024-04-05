@@ -6,6 +6,18 @@ body {
     user-select: none;
 }
 
+#title {
+    text-align: center;
+    font-size: 120px;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+#answer {
+    font-style: italic;
+    color: blue;
+}
+
 .stockList {
     float: left;
     padding: 20px;
@@ -139,6 +151,7 @@ body {
 .blue {
     color: blue;
 }
+
 
 .off {
     display: none;
