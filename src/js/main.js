@@ -102,7 +102,7 @@ setInterval(function () {
             }
         });
     }
-}, 1000);
+}, 10);
 setInterval(function () {
     startScreen();
 }, 50);

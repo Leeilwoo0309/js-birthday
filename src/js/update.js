@@ -46,5 +46,7 @@ function startScreen() {
 document.querySelector('#title').addEventListener('click', function () {
     var titleName = document.querySelector("#titleName");
     //@ts-ignore
-    titleName.innerHTML = '서진';
+    titleName.innerHTML = titleName.innerText == '서진이'
+        ? '이용명 선생님의' :
+        titleName.innerText == '이용명 선생님의' ? '<span style="font-size: 10px;">청암 김원근 선생과 석정 김영근 선생이 창립한 청석학원에서 근 30년간 근무중인 청석학원의 자랑인 희붕쌤 제자, 약대에 진학해 약사를 하고 있는, 의 와이프이자 주성의 경영학에서 유용하게 사용되는 확률과 통계를 가르치는 <b>윤혜정 선생님</b>의</span>' : '서진이';
 });

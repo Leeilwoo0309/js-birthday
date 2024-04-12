@@ -129,7 +129,7 @@ setInterval(() => {
         });
     }
 
-}, 1000);
+}, 10);
 
 setInterval(() => {
     startScreen();

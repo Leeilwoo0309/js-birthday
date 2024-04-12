@@ -186,6 +186,12 @@ var items = [
         price: 4320000000,
         description: "초코송이 가격 * 초코송이 상품 사진 크기²",
         isBought: false
+    },
+    {
+        name: '의문의 동영상',
+        price: 10000000000000000000,
+        description: "직박구리",
+        isBought: false
     }
 ];
 var bank = [
@@ -214,6 +220,15 @@ var bank = [
             max: 39900
         },
         interest: 0.1,
+        hasDebt: false
+    },
+    {
+        name: "산화머니",
+        debt: {
+            now: 0,
+            max: 1000
+        },
+        interest: 0.65,
         hasDebt: false
     },
     {
