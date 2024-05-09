@@ -1,4 +1,7 @@
-type Stock = {
+interface StockType {
+    buy: Function,
+    priceRefresh: Function,
+    sell: Function,
     name: string,
     price: number,
     totalPrice: number,
@@ -7,10 +10,12 @@ type Stock = {
     min: number,
     priceChange: number[],
     isArrive: boolean,
-    extra: {
-        type: string,
-        crisis: number,
-    },
+    extra: StockExtra
+}
+
+type StockExtra = {
+    type: string,
+    crisis: number
 }
 
 type Item = {

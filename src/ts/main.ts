@@ -68,12 +68,11 @@ buySellGatsu.addEventListener("input", (e) => {
     priceUpdate();
 })
 
-
-// 1초마다 실행하는거 (주식 가격 바꾸기..)
+// 메뉴 바꾸는거
 menu.forEach((e, i) => {
     e.addEventListener('click', () => {
         nowMenu = i;
-
+        
         if(nowMenu == 0) {
             stockListDiv.classList.remove('off');
             bankListDiv.classList.add('off');
@@ -92,19 +91,12 @@ menu.forEach((e, i) => {
     });
 })
 
+// 1초마다 실행하는거 (주식 가격 바꾸기..)
 setInterval(() => {
     if (isStart) {
         stock.forEach((e, i) => {
-            const changeRatio = (Math.random() * 0.01) - 0.005;
+            e.priceRefresh();
             const thisDiv = stockListDivs[i];
-    
-            e.price += Math.floor(changeRatio * e.price);
-    
-            if(Math.floor(changeRatio * e.price) == 0) {
-                e.price += Math.floor(Math.random() * 10);
-            }
-    
-            e.priceChange.push(e.price)
             
             // 차트 그리는 거
             if (nowInfo == i) {
@@ -116,7 +108,7 @@ setInterval(() => {
     
                 //@ts-ignore
                 priceUpdate();
-                }
+            }
     
             //@ts-ignore
             thisDiv.innerHTML = `${e.name} \\${e.price}`;
@@ -129,7 +121,7 @@ setInterval(() => {
         });
     }
 
-}, 10);
+}, 1000);
 
 setInterval(() => {
     startScreen();

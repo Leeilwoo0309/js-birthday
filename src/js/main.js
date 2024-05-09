@@ -51,7 +51,7 @@ stockListDivs.forEach(function (e, i) {
 buySellGatsu.addEventListener("input", function (e) {
     priceUpdate();
 });
-// 1초마다 실행하는거 (주식 가격 바꾸기..)
+// 메뉴 바꾸는거
 menu.forEach(function (e, i) {
     e.addEventListener('click', function () {
         nowMenu = i;
@@ -73,16 +73,12 @@ menu.forEach(function (e, i) {
         }
     });
 });
+// 1초마다 실행하는거 (주식 가격 바꾸기..)
 setInterval(function () {
     if (isStart) {
         stock.forEach(function (e, i) {
-            var changeRatio = (Math.random() * 0.01) - 0.005;
+            e.priceRefresh();
             var thisDiv = stockListDivs[i];
-            e.price += Math.floor(changeRatio * e.price);
-            if (Math.floor(changeRatio * e.price) == 0) {
-                e.price += Math.floor(Math.random() * 10);
-            }
-            e.priceChange.push(e.price);
             // 차트 그리는 거
             if (nowInfo == i) {
                 charts.forEach(function (chart) {
@@ -102,7 +98,7 @@ setInterval(function () {
             }
         });
     }
-}, 10);
+}, 1000);
 setInterval(function () {
     startScreen();
 }, 50);

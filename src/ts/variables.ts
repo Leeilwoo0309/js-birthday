@@ -6,162 +6,167 @@ let boughtStockMoney: number = 0;
 let nowInfo: number = 0;
 let nowMenu: number = 0;
 let charts = [];
-let stock: Stock[] = [
-    {
-        name: 'GIA (饑餓)',
-        price: 30000,
-        totalPrice: 0,
-        amount: 0,
-        max: 30000,
-        min: 30000,
-        priceChange: [30000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: '卌┕日 (십L일)',
-        price: 5000,
-        totalPrice: 0,
-        amount: 0,
-        max: 5000,
-        min: 5000,
-        priceChange: [5000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: 'YMT',
-        price: 5000,
-        totalPrice: 0,
-        amount: 0,
-        max: 5000,
-        min: 5000,
-        priceChange: [5000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: '주성 엔지니어링',
-        price: 24853,
-        totalPrice: 0,
-        amount: 0,
-        max: 24853,
-        min: 24853,
-        priceChange: [24853],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: 'SAMSUN-GT',
-        price: 75000,
-        totalPrice: 0,
-        amount: 0,
-        max: 75000,
-        min: 75000,
-        priceChange: [75000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: 'SJ약품',
-        price: 350,
-        totalPrice: 0,
-        amount: 0,
-        max: 350,
-        min: 350,
-        priceChange: [350],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: 'SJ약품',
-        price: 350,
-        totalPrice: 0,
-        amount: 0,
-        max: 350,
-        min: 350,
-        priceChange: [350],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: 'CJ 엔터테인먼트',
-        price: 150,
-        totalPrice: 0,
-        amount: 0,
-        max: 150,
-        min: 150,
-        priceChange: [150],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: '더불어민주당',
-        price: 1664000,
-        totalPrice: 0,
-        amount: 0,
-        max: 1664000,
-        min: 1664000,
-        priceChange: [1664000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: '국민의 힘',
-        price: 18720000,
-        totalPrice: 0,
-        amount: 0,
-        max: 18720000,
-        min: 18720000,
-        priceChange: [18720000],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '자동차 제조업'
-        }
-    },
-    {
-        name: '고 바이오 랩',
-        price: 8500,
-        totalPrice: 0,
-        amount: 0,
-        max: 8500,
-        min: 8500,
-        priceChange: [8500],
-        isArrive: true,
-        extra: {
-            crisis: 0,
-            type: '연예 소속사'
-        }
-    }
+let stock: StockType[] = [
+    new StockBuilder().setName("KIA").setPrice(5000).setType("은행").build(),
 ];
+
+// let stock: StockType[] = [
+//     new StockBuilder().setName("KIA").setPrice(5000).setType("은행").build(),
+//     {
+//         name: 'GIA (饑餓)',
+//         price: 30000,
+//         totalPrice: 0,
+//         amount: 0,
+//         max: 30000,
+//         min: 30000,
+//         priceChange: [30000],
+//         isArrive: true,
+//         extra: {
+//             crisis: 0,
+//             type: '자동차 제조업'
+//         }
+//     },
+//     {
+//         name: '卌┕日 (십L일)',
+//         price: 5000,
+//         totalPrice: 0,
+//         amount: 0,
+//         max: 5000,
+//         min: 5000,
+//         priceChange: [5000],
+//         isArrive: true,
+//         extra: {
+//             crisis: 0,
+//             type: '자동차 제조업'
+//         }
+//     },
+//     {
+//         name: 'YMT',
+//         price: 5000,
+//         totalPrice: 0,
+//         amount: 0,
+//         max: 5000,
+//         min: 5000,
+//         priceChange: [5000],
+//         isArrive: true,
+//         extra: {
+//             crisis: 0,
+//             type: '자동차 제조업'
+//         }
+//     },
+//     {
+//         name: '주성 엔지니어링',
+//         price: 24853,
+//         totalPrice: 0,
+//         amount: 0,
+//         max: 24853,
+//         min: 24853,
+//         priceChange: [24853],
+//         isArrive: true,
+//         extra: {
+//             crisis: 0,
+//             type: '자동차 제조업'
+//         }
+//     },
+//     {
+//         name: 'SAMSUN-GT',
+//         price: 75000,
+//         totalPrice: 0,
+//         amount: 0,
+//         max: 75000,
+//         min: 75000,
+//         priceChange: [75000],
+//         isArrive: true,
+//         extra: {
+//             crisis: 0,
+//             type: '자동차 제조업'
+//         }
+//     },
+//     {
+//         name: 'SJ약품',
+//         price: 350,
+//         totalPrice: 0,
+//         amount: 0,
+//         max: 350,
+//         min: 350,
+//         priceChange: [350],
+//         isArrive: true,
+//         extra: {
+//             crisis: 0,
+//             type: '자동차 제조업'
+//         }
+//     },
+//     {
+//         name: 'SJ약품',
+//         price: 350,
+//         totalPrice: 0,
+//         amount: 0,
+//         max: 350,
+//         min: 350,
+//         priceChange: [350],
+//         isArrive: true,
+//         extra: {
+//             crisis: 0,
+//             type: '자동차 제조업'
+//         }
+//     },
+//     {
+//         name: 'CJ 엔터테인먼트',
+//         price: 150,
+//         totalPrice: 0,
+//         amount: 0,
+//         max: 150,
+//         min: 150,
+//         priceChange: [150],
+//         isArrive: true,
+//         extra: {
+//             crisis: 0,
+//             type: '자동차 제조업'
+//         }
+//     },
+//     {
+//         name: '더불어민주당',
+//         price: 1664000,
+//         totalPrice: 0,
+//         amount: 0,
+//         max: 1664000,
+//         min: 1664000,
+//         priceChange: [1664000],
+//         isArrive: true,
+//         extra: {
+//             crisis: 0,
+//             type: '자동차 제조업'
+//         }
+//     },
+//     {
+//         name: '국민의 힘',
+//         price: 18720000,
+//         totalPrice: 0,
+//         amount: 0,
+//         max: 18720000,
+//         min: 18720000,
+//         priceChange: [18720000],
+//         isArrive: true,
+//         extra: {
+//             crisis: 0,
+//             type: '자동차 제조업'
+//         }
+//     },
+//     {
+//         name: '고 바이오 랩',
+//         price: 8500,
+//         totalPrice: 0,
+//         amount: 0,
+//         max: 8500,
+//         min: 8500,
+//         priceChange: [8500],
+//         isArrive: true,
+//         extra: {
+//             crisis: 0,
+//             type: '연예 소속사'
+//         }
+//     }
+// ];
 let items: Item[] = [
     {
         name: 'TV',
