@@ -41,10 +41,14 @@ var bankListDivs = document.querySelectorAll('.bank');
 // 주식 어떤거 보고잇는지
 stockListDivs.forEach(function (e, i) {
     e.addEventListener('click', function () {
-        document.querySelector("#stock-".concat(nowInfo)).classList.remove('on');
-        nowInfo = i;
+        //@ts-ignore
+        document.querySelector('#chart').style.display = '';
+        //@ts-ignore
+        document.querySelector('#bankInfo').style.display = 'none';
+        document.querySelector("#stock-".concat(nowInfo[0])).classList.remove('on');
+        nowInfo[0] = i;
         charts.push(drawChart(stock[i].priceChange));
-        document.querySelector("#stock-".concat(nowInfo)).classList.add('on');
+        document.querySelector("#stock-".concat(nowInfo[0])).classList.add('on');
         updateText(stock[i]);
     });
 });
@@ -57,20 +61,41 @@ menu.forEach(function (e, i) {
         nowMenu = i;
         if (nowMenu == 0) {
             stockListDiv.classList.remove('off');
+            document.querySelector(".stockMk").classList.add('on');
             bankListDiv.classList.add('off');
+            document.querySelector(".bank").classList.remove('on');
             store.classList.add('off');
+            document.querySelector(".store").classList.remove('on');
         }
         else if (nowMenu == 1) {
             stockListDiv.classList.add('off');
+            document.querySelector(".stockMk").classList.remove('on');
             bankListDiv.classList.remove('off');
+            document.querySelector(".bank").classList.add('on');
             store.classList.add('off');
+            document.querySelector(".store").classList.remove('on');
         }
         else if (nowMenu == 2) {
             stockListDiv.classList.add('off');
+            document.querySelector(".stockMk").classList.remove('on');
             bankListDiv.classList.add('off');
+            document.querySelector(".bank").classList.remove('on');
             store.classList.remove('off');
-            console.log('김치');
+            document.querySelector(".store").classList.add('on');
         }
+    });
+});
+var bankListEachDiv = document.querySelectorAll('.bankList');
+bankListEachDiv.forEach(function (e, i) {
+    e.addEventListener('click', function () {
+        document.querySelector("#bank-".concat(nowInfo[1])).classList.remove('on');
+        //@ts-ignore
+        document.querySelector('#chart').style.display = 'none';
+        //@ts-ignore
+        document.querySelector('#bankInfo').style.display = '';
+        nowInfo[1] = i;
+        document.querySelector("#bank-".concat(nowInfo[1])).classList.add('on');
+        updateBank();
     });
 });
 // 1초마다 실행하는거 (주식 가격 바꾸기..)
@@ -80,7 +105,7 @@ setInterval(function () {
             e.priceRefresh();
             var thisDiv = stockListDivs[i];
             // 차트 그리는 거
-            if (nowInfo == i) {
+            if (nowInfo[0] == i) {
                 charts.forEach(function (chart) {
                     chart.destroy();
                 });
@@ -95,6 +120,13 @@ setInterval(function () {
                 var param = Math.floor((e.price * e.amount / e.totalPrice) * 10000 - 10000).toString();
                 //@ts-ignore
                 thisDiv.innerHTML = "".concat(e.name, " \\").concat(e.price, " (").concat(upOrDownPercenStringReturner(param), ")");
+            }
+        });
+        bank.forEach(function (e, i) {
+            if (e.debt.now > 0) {
+                money -= e.debt.max * 0.0001;
+                e.debt.now -= e.debt.max * 0.0001;
+                updateBank();
             }
         });
     }

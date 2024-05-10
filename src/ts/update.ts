@@ -3,7 +3,6 @@ let colorNum: number = 0;
 
 function updateText(stockData: StockType) {
     const stockNameText: HTMLHeadingElement = document.querySelector('#stockName');
-    const stockPriceText: HTMLSpanElement = document.querySelector('#stockPrice');
 
     stockNameText.innerHTML = `${stockData.name}
         <span id="stockPrice">${stockData.price}</span>
@@ -15,8 +14,8 @@ function priceUpdate(): void {
     if (isNaN(Number(buySellGatsu.value))) {
         buyOrSellPriceDisplayer.innerHTML = `${ buySellGatsu.value }가 니눈엔 숫자냐?`;
     } else {
-        buyOrSellPriceDisplayer.innerHTML = `${ stock[nowInfo].price * Number(buySellGatsu.value) }
-            <span id="nowStockInfo">${stock[nowInfo].amount}주 보유중... (\\${stock[nowInfo].amount * stock[nowInfo].price})</span>`;
+        buyOrSellPriceDisplayer.innerHTML = `${ stock[nowInfo[0]].price * Number(buySellGatsu.value) }
+            <span id="nowStockInfo">${stock[nowInfo[0]].amount}주 보유중... (\\${stock[nowInfo[0]].amount * stock[nowInfo[0]].price})</span>`;
     }
 
     calcCurrentStockMoney();
@@ -71,3 +70,10 @@ document.querySelector('#title').addEventListener('click', () => {
 document.querySelector("#answer").addEventListener('click', () => {
     document.querySelector("#answer").innerHTML = "어 진이 떠 진이";
 })
+
+function updateBank() {
+    document.querySelector("#bankName").innerHTML = bank[nowInfo[1]].name.toString();
+    document.querySelector("#limitation").innerHTML = bank[nowInfo[1]].debt.max.toString();
+    document.querySelector("#interest").innerHTML = (bank[nowInfo[1]].interest * 100).toString();
+    document.querySelector("#leftDebt").innerHTML = bank[nowInfo[1]].getLeftReturnMoney().toFixed();    
+}

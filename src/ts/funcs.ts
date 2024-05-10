@@ -13,7 +13,7 @@ function drawChart(changes: number[]) {
         data: {
             labels: label,
             datasets: [{
-                label: stock[nowInfo].name,
+                label: stock[nowInfo[0]].name,
                 data: data,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',

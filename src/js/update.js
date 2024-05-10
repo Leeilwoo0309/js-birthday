@@ -2,7 +2,6 @@ var upDownPerCent;
 var colorNum = 0;
 function updateText(stockData) {
     var stockNameText = document.querySelector('#stockName');
-    var stockPriceText = document.querySelector('#stockPrice');
     stockNameText.innerHTML = "".concat(stockData.name, "\n        <span id=\"stockPrice\">").concat(stockData.price, "</span>\n        <span id=\"stockType\">").concat(stockData.extra.type, "</span>\n    ");
 }
 function priceUpdate() {
@@ -10,7 +9,7 @@ function priceUpdate() {
         buyOrSellPriceDisplayer.innerHTML = "".concat(buySellGatsu.value, "\uAC00 \uB2C8\uB208\uC5D4 \uC22B\uC790\uB0D0?");
     }
     else {
-        buyOrSellPriceDisplayer.innerHTML = "".concat(stock[nowInfo].price * Number(buySellGatsu.value), "\n            <span id=\"nowStockInfo\">").concat(stock[nowInfo].amount, "\uC8FC \uBCF4\uC720\uC911... (\\").concat(stock[nowInfo].amount * stock[nowInfo].price, ")</span>");
+        buyOrSellPriceDisplayer.innerHTML = "".concat(stock[nowInfo[0]].price * Number(buySellGatsu.value), "\n            <span id=\"nowStockInfo\">").concat(stock[nowInfo[0]].amount, "\uC8FC \uBCF4\uC720\uC911... (\\").concat(stock[nowInfo[0]].amount * stock[nowInfo[0]].price, ")</span>");
     }
     calcCurrentStockMoney();
     upDownPerCent = Math.floor((currentStockMoney / boughtStockMoney) * 10000 - 10000).toString();
@@ -53,3 +52,9 @@ document.querySelector('#title').addEventListener('click', function () {
 document.querySelector("#answer").addEventListener('click', function () {
     document.querySelector("#answer").innerHTML = "어 진이 떠 진이";
 });
+function updateBank() {
+    document.querySelector("#bankName").innerHTML = bank[nowInfo[1]].name.toString();
+    document.querySelector("#limitation").innerHTML = bank[nowInfo[1]].debt.max.toString();
+    document.querySelector("#interest").innerHTML = (bank[nowInfo[1]].interest * 100).toString();
+    document.querySelector("#leftDebt").innerHTML = bank[nowInfo[1]].getLeftReturnMoney().toFixed();
+}

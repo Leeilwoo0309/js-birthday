@@ -1,172 +1,26 @@
 let isStart: boolean = false;
-let money: number = 12000;
+let money: number = 100000;
 let debt: number = 1900000000;
 let currentStockMoney: number = 0;
 let boughtStockMoney: number = 0;
-let nowInfo: number = 0;
+let nowInfo: number[] = [0, 0, 0];
 let nowMenu: number = 0;
 let charts = [];
 let stock: StockType[] = [
-    new StockBuilder().setName("KIA").setPrice(5000).setType("은행").build(),
+    new StockBuilder().setName("SJ's 톡킹").setPrice(50000).setType("서비스업").build(),
+    new StockBuilder().setName("㈜ 천국김밥").setPrice(4500).setType("종교").build(),
+    new StockBuilder().setName("어진전자").setPrice(380000).setType("첨단 제조업").build(),
+    new StockBuilder().setName("YMT 수학 교습소").setPrice(35000).setType("교육").build(),
+    new StockBuilder().setName("아두노이").setPrice(7900).setType("반도체 사업").build(),
+    new StockBuilder().setName("농사법인회사(주) 주성").setPrice(32000).setType("농업").build(),
+    new StockBuilder().setName("리엇 가메즈").setPrice(14500).setType("서비스업").build(),
+    new StockBuilder().setName("미크로소테").setPrice(564094).setType("서비스업").build(),
+    new StockBuilder().setName("Eng-Vidia").setPrice(1200000).setType("반도체 사업").build(),
+    new StockBuilder().setName("비상(Emergency)교육").setPrice(5000).setType("출판사/교과서").build(),
+    new StockBuilder().setName("킬로스터디").setPrice(59900).setType("인터넷 강의").build(),
+    new StockBuilder().setName("대한민국").setPrice(1000000000000000).setType("국가 (國家)").build(),
 ];
 
-// let stock: StockType[] = [
-//     new StockBuilder().setName("KIA").setPrice(5000).setType("은행").build(),
-//     {
-//         name: 'GIA (饑餓)',
-//         price: 30000,
-//         totalPrice: 0,
-//         amount: 0,
-//         max: 30000,
-//         min: 30000,
-//         priceChange: [30000],
-//         isArrive: true,
-//         extra: {
-//             crisis: 0,
-//             type: '자동차 제조업'
-//         }
-//     },
-//     {
-//         name: '卌┕日 (십L일)',
-//         price: 5000,
-//         totalPrice: 0,
-//         amount: 0,
-//         max: 5000,
-//         min: 5000,
-//         priceChange: [5000],
-//         isArrive: true,
-//         extra: {
-//             crisis: 0,
-//             type: '자동차 제조업'
-//         }
-//     },
-//     {
-//         name: 'YMT',
-//         price: 5000,
-//         totalPrice: 0,
-//         amount: 0,
-//         max: 5000,
-//         min: 5000,
-//         priceChange: [5000],
-//         isArrive: true,
-//         extra: {
-//             crisis: 0,
-//             type: '자동차 제조업'
-//         }
-//     },
-//     {
-//         name: '주성 엔지니어링',
-//         price: 24853,
-//         totalPrice: 0,
-//         amount: 0,
-//         max: 24853,
-//         min: 24853,
-//         priceChange: [24853],
-//         isArrive: true,
-//         extra: {
-//             crisis: 0,
-//             type: '자동차 제조업'
-//         }
-//     },
-//     {
-//         name: 'SAMSUN-GT',
-//         price: 75000,
-//         totalPrice: 0,
-//         amount: 0,
-//         max: 75000,
-//         min: 75000,
-//         priceChange: [75000],
-//         isArrive: true,
-//         extra: {
-//             crisis: 0,
-//             type: '자동차 제조업'
-//         }
-//     },
-//     {
-//         name: 'SJ약품',
-//         price: 350,
-//         totalPrice: 0,
-//         amount: 0,
-//         max: 350,
-//         min: 350,
-//         priceChange: [350],
-//         isArrive: true,
-//         extra: {
-//             crisis: 0,
-//             type: '자동차 제조업'
-//         }
-//     },
-//     {
-//         name: 'SJ약품',
-//         price: 350,
-//         totalPrice: 0,
-//         amount: 0,
-//         max: 350,
-//         min: 350,
-//         priceChange: [350],
-//         isArrive: true,
-//         extra: {
-//             crisis: 0,
-//             type: '자동차 제조업'
-//         }
-//     },
-//     {
-//         name: 'CJ 엔터테인먼트',
-//         price: 150,
-//         totalPrice: 0,
-//         amount: 0,
-//         max: 150,
-//         min: 150,
-//         priceChange: [150],
-//         isArrive: true,
-//         extra: {
-//             crisis: 0,
-//             type: '자동차 제조업'
-//         }
-//     },
-//     {
-//         name: '더불어민주당',
-//         price: 1664000,
-//         totalPrice: 0,
-//         amount: 0,
-//         max: 1664000,
-//         min: 1664000,
-//         priceChange: [1664000],
-//         isArrive: true,
-//         extra: {
-//             crisis: 0,
-//             type: '자동차 제조업'
-//         }
-//     },
-//     {
-//         name: '국민의 힘',
-//         price: 18720000,
-//         totalPrice: 0,
-//         amount: 0,
-//         max: 18720000,
-//         min: 18720000,
-//         priceChange: [18720000],
-//         isArrive: true,
-//         extra: {
-//             crisis: 0,
-//             type: '자동차 제조업'
-//         }
-//     },
-//     {
-//         name: '고 바이오 랩',
-//         price: 8500,
-//         totalPrice: 0,
-//         amount: 0,
-//         max: 8500,
-//         min: 8500,
-//         priceChange: [8500],
-//         isArrive: true,
-//         extra: {
-//             crisis: 0,
-//             type: '연예 소속사'
-//         }
-//     }
-// ];
 let items: Item[] = [
     {
         name: 'TV',
@@ -200,50 +54,10 @@ let items: Item[] = [
     }
 ]
 
-let bank: Bank[] = [
-    {
-        name: "㈜ 어진 (사시미)사채",
-        debt: {
-            now: 0,
-            max: 1500000
-        },
-        interest: 0.50,
-        hasDebt: false
-    },
-    {
-        name: "신안은행 ─ 언제나 소금같은 마음으로",
-        debt: {
-            now: 0,
-            max: 5900
-        },
-        interest: 0.04,
-        hasDebt: false
-    },
-    {
-        name: "KB우리국민하나SC제일은행",
-        debt: {
-            now: 0,
-            max: 39900
-        },
-        interest: 0.1,
-        hasDebt: false
-    },
-    {
-        name: "산화머니",
-        debt: {
-            now: 0,
-            max: 1000
-        },
-        interest: 0.65,
-        hasDebt: false
-    },
-    {
-        name: "조선민주주의인민공화국 중앙은행",
-        debt: {
-            now: 0,
-            max: 300
-        },
-        interest: 30,
-        hasDebt: false
-    },
+let bank: BankType[] = [
+    new BankBuilder().setBankName("신안은행 ─ 언제나 소금같은 마음으로").setDebtLimitation(5900).setInterest(0.04).build(),
+    new BankBuilder().setBankName("㈜ 어진 (사시미)사채").setDebtLimitation(38000000).setInterest(0.3).build(),
+    new BankBuilder().setBankName("KB우리국민하나SC제일은행").setDebtLimitation(39900).setInterest(0.1).build(),
+    new BankBuilder().setBankName("한화머니").setDebtLimitation(1000).setInterest(0.65).build(),
+    new BankBuilder().setBankName("조선민주주의인민공화국 중앙은행").setDebtLimitation(300).setInterest(30).build(),
 ]

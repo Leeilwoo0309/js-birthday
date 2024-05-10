@@ -25,7 +25,10 @@ type Item = {
     isBought: boolean,
 }
 
-type Bank = {
+type BankType = {
+    lend: Function,
+    ret: Function,
+    getLeftReturnMoney: Function,
     name: string,
     hasDebt: boolean,
     debt: {
