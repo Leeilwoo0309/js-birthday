@@ -1,6 +1,5 @@
 var isStart = false;
 var money = 100000;
-var debt = 1900000000;
 var currentStockMoney = 0;
 var boughtStockMoney = 0;
 var nowInfo = [0, 0, 0];

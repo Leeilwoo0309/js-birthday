@@ -1,4 +1,5 @@
-var startBtn = document.querySelector('#startButton');
+var startNewBtn = document.querySelector('#startButton');
+var startLoadBtn = document.querySelector('#loadButton');
 var stockListDiv = document.querySelector('#stockList');
 var bankListDiv = document.querySelector('#bank');
 var store = document.querySelector('#store');
@@ -6,11 +7,19 @@ var stockChart = document.querySelector('#stockChart');
 var buyOrSellPriceDisplayer = document.querySelector('#sellOrBuyPrice');
 var buySellGatsu = document.querySelector('#buySellGatsu');
 var menu = document.querySelectorAll('.menu');
-startBtn.addEventListener('click', function () {
+startNewBtn.addEventListener('click', function () {
     var startDiv = document.querySelector('#start');
     var startDived = document.querySelector('#started');
     startDiv.style.display = 'none';
     startDived.style.display = '';
+    isStart = true;
+});
+startLoadBtn.addEventListener('click', function () {
+    var startDiv = document.querySelector('#start');
+    var startDived = document.querySelector('#started');
+    startDiv.style.display = 'none';
+    startDived.style.display = '';
+    fileManage.load();
     isStart = true;
 });
 // 주식 있는거 그려줌
@@ -123,7 +132,11 @@ setInterval(function () {
             }
         });
         bank.forEach(function (e, i) {
+            //@ts-ignore
+            document.querySelector("#bank-".concat(i)).style.color = 'black';
             if (e.debt.now > 0) {
+                //@ts-ignore
+                document.querySelector("#bank-".concat(i)).style.color = 'red';
                 money -= e.debt.max * 0.0001;
                 e.debt.now -= e.debt.max * 0.0001;
                 updateBank();

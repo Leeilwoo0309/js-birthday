@@ -1,9 +1,8 @@
 let isStart: boolean = false;
 let money: number = 100000;
-let debt: number = 1900000000;
 let currentStockMoney: number = 0;
 let boughtStockMoney: number = 0;
-let nowInfo: number[] = [0, 0, 0];
+let nowInfo: [number, number, number] = [0, 0, 0];
 let nowMenu: number = 0;
 let charts = [];
 let stock: StockType[] = [

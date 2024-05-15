@@ -89,8 +89,27 @@ body {
 }
 
 #list {
-    grid-template-rows: 120px 60px 1000px;
+    grid-template-rows: 120px 50px 60px 1000px;
     display: grid;
+}
+
+#saveBtn {
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    align-self: center;
+    width: 270px;
+    background-color: white;
+}
+
+#saveBtn:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+#saveDiv {
+    display: flex;
 }
 
 .menu {

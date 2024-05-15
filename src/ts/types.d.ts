@@ -37,3 +37,14 @@ type BankType = {
     },
     interest: number
 }
+
+type SaveForm = {
+    money: number,
+    currentStockMoney: number,
+    boughtStockMoney: number,
+    nowInfo: [number, number, number],
+    nowMenu: number,
+    stock: StockType[],
+    items: Item[],
+    bank: BankType[]
+}

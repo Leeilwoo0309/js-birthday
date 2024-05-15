@@ -15,7 +15,7 @@ function priceUpdate() {
     upDownPerCent = Math.floor((currentStockMoney / boughtStockMoney) * 10000 - 10000).toString();
     document.querySelector('#money').innerHTML = money.toFixed();
     document.querySelector('#stockCurrentPrice').innerHTML = "".concat(currentStockMoney.toFixed(), "\uC6D0 (").concat(upOrDownPercenStringReturner(), ")  ");
-    document.querySelector('#stockBoughtPrice').innerHTML = boughtStockMoney.toFixed();
+    // document.querySelector('#stockBoughtPrice').innerHTML = boughtStockMoney.toFixed();
 }
 function calcCurrentStockMoney() {
     currentStockMoney = 0;
@@ -25,13 +25,29 @@ function calcCurrentStockMoney() {
         boughtStockMoney += e.totalPrice;
     });
 }
-function upOrDownPercenStringReturner(upDownPerCent) {
-    if (upDownPerCent === void 0) { upDownPerCent = Math.floor((currentStockMoney / boughtStockMoney) * 10000 - 10000).toString(); }
+function upOrDownPercenStringReturner(upDownPercent) {
+    if (upDownPercent === void 0) { upDownPercent = Math.floor((currentStockMoney / boughtStockMoney) * 10000 - 10000).toString(); }
     calcCurrentStockMoney();
-    return "<span class=\"".concat(Number(upDownPerCent) > 1 ? "red" : "blue", "\">").concat(upDownPerCent.substring(0, upDownPerCent.length - 2) == ''
-        ? '▲ 0'
-        : upDownPerCent.substring(0, upDownPerCent.length - 2) == '-' ? '▼ 0' :
-            '▲ ' + upDownPerCent.substring(0, upDownPerCent.length - 2), ".").concat(upDownPerCent.substring(upDownPerCent.length - 2), "%</span>");
+    var _ret;
+    var _updownInnerSpan = upDownPercent.substring(0, upDownPercent.length - 2) + "." + upDownPercent.substring(upDownPercent.length - 2);
+    if (Number(upDownPercent) < 100 && Number(upDownPercent) > 0) {
+        _ret = '<span class="red">▲ 0' + _updownInnerSpan + "%</span>";
+    }
+    else if (Number(upDownPercent) > -100 && Number(upDownPercent) < 0) {
+        _ret = '<span class="blue">▼ -0' + upDownPercent.substring(1, upDownPercent.length - 2) + "." + upDownPercent.substring(upDownPercent.length - 2) + "%</span>";
+    }
+    else if (Number(upDownPercent) > 0) {
+        _ret = '<span class="red">▲ ' + _updownInnerSpan + "%</span>";
+    }
+    else {
+        _ret = '<span class="blue">▼ ' + _updownInnerSpan + "%</span>";
+    }
+    return _ret;
+    // return `<span class="${ Number(upDownPerCent) > 1 ? "red" : "blue" }">${upDownPerCent.substring(0, upDownPerCent.length - 2) == ''
+    //     ? '▲ 0'
+    //     : upDownPerCent.substring(0, upDownPerCent.length - 2) == '-' ? '▼ 0' :
+    //     '▲ ' + upDownPerCent.substring(0, upDownPerCent.length - 2)
+    //     }.${upDownPerCent.substring(upDownPerCent.length - 2)}%</span>`
 }
 function startScreen() {
     var answer = document.querySelector("#answer");

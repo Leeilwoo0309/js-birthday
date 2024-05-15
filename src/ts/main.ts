@@ -1,4 +1,5 @@
-const startBtn: HTMLSpanElement = document.querySelector('#startButton');
+const startNewBtn: HTMLSpanElement = document.querySelector('#startButton');
+const startLoadBtn: HTMLSpanElement = document.querySelector('#loadButton');
 const stockListDiv: HTMLDivElement = document.querySelector('#stockList');
 const bankListDiv: HTMLDivElement = document.querySelector('#bank');
 const store: HTMLDivElement = document.querySelector('#store');
@@ -7,7 +8,7 @@ const buyOrSellPriceDisplayer: HTMLSpanElement = document.querySelector('#sellOr
 const buySellGatsu: HTMLInputElement = document.querySelector('#buySellGatsu');
 const menu: NodeList = document.querySelectorAll('.menu');
 
-startBtn.addEventListener('click', () => {
+startNewBtn.addEventListener('click', () => {
     const startDiv: HTMLDivElement = document.querySelector('#start')
     const startDived: HTMLDivElement = document.querySelector('#started')
 
@@ -16,6 +17,18 @@ startBtn.addEventListener('click', () => {
     isStart = true;
 
 });
+
+startLoadBtn.addEventListener('click', () => {
+    const startDiv: HTMLDivElement = document.querySelector('#start')
+    const startDived: HTMLDivElement = document.querySelector('#started')
+
+    startDiv.style.display = 'none';
+    startDived.style.display = '';
+
+    fileManage.load();
+
+    isStart = true;
+})
 
 // 주식 있는거 그려줌
 stock.forEach((e, i) => {
@@ -154,7 +167,12 @@ setInterval(() => {
         });
 
         bank.forEach((e: Bank, i: number) => {
+            //@ts-ignore
+            document.querySelector(`#bank-${i}`).style.color = 'black';
             if (e.debt.now > 0) {
+                //@ts-ignore
+                document.querySelector(`#bank-${i}`).style.color = 'red'
+                
                 money -= e.debt.max * 0.0001;
                 e.debt.now -= e.debt.max * 0.0001;
 

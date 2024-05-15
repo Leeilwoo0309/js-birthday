@@ -14,27 +14,31 @@
         <div id="start">
             <p id="title"><span style="color:red">[★<span id="titleName">주성이</span> 생일 선물★]<br></span> 스님이 하늘을 날면?<br><span id="answer">어 중이 떠 중이</span></p>
             <div id="startDiv">
-                <p id="startButton" class="btnStart">Start ((자동차의 시동을) 걸다)</p>
-                <p id="loadButton" class="btnStart">Load (얼룩이 지다)</p>
+                <p id="startButton" class="btnStart">새로 시작</p>
+                <p id="loadButton" class="btnStart">불러오기</p>
             </div>
         </div>
         <div id="started" style="display: none;">
             <div id="list">
                 <div id="status">
                     <p>현재 돈: <span id="money">150,000</span>원</p>
-                    <p>총 주식 구매가: <span id="stockBoughtPrice">0</span>원</p>
+                    <!-- <p>총 주식 구매가: <span id="stockBoughtPrice">0</span>원</p> -->
                     <p>
                         현재 주가:  
                         <span id="stockCurrentPrice">0원
                             (<span id="priceUpDown">0</span>%)</span>
                     </p>
                 </div>
+                <div id="saveDiv">
+                    <span id="saveBtn">저장</span>
+                </div>
                 <div id="menuList">
                     <span class="menu stockMk">주식시장</span>
                     <span class="menu bank">은행</span>
                     <span class="menu store">상점</span>
                 </div>
-                <div id="stockList" class=""></div>
+                <div id="stockList" class="">
+                </div>
                 <div id="bank" class="off"></div>
                 <div id="store" class="off"></div>
             </div>
@@ -75,5 +79,6 @@
     <script src="../js/variables.js"></script>
     <script src="../js/funcs.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/saveLoad.js"></script>
 </body>
 </html>

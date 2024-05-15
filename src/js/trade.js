@@ -6,7 +6,7 @@ buyBtn.addEventListener('click', function () {
     stock[nowInfo[0]].buy();
 });
 sellBtn.addEventListener('click', function () {
-    stock[nowInfo[0]].sell(Number(buySellGatsu.value));
+    stock[nowInfo[0]].sell();
 });
 lendBtn.addEventListener('click', function () {
     bank[nowInfo[1]].lend();

@@ -20,6 +20,7 @@ var Stock = /** @class */ (function () {
         this.priceChange.push(this.price);
     };
     Stock.prototype.buy = function (amount) {
+        if (amount === void 0) { amount = 0; }
         var _price = Number(buySellGatsu.value) * stock[nowInfo[0]].price;
         if (_price <= money) {
             money -= _price;
@@ -32,10 +33,12 @@ var Stock = /** @class */ (function () {
         }
     };
     Stock.prototype.sell = function (amount) {
+        if (amount === void 0) { amount = null; }
         if (this.amount > 0) {
-            money += amount * this.price * 0.94;
+            money += this.amount * this.price * 0.94;
             this.amount -= Number(buySellGatsu.value);
-            this.totalPrice -= amount * this.price;
+            this.totalPrice -= this.amount * this.price;
+            priceUpdate();
             alert('판매 완료!!!!!!!!!');
         }
         else {
@@ -59,6 +62,18 @@ var StockBuilder = /** @class */ (function () {
     };
     StockBuilder.prototype.setType = function (typeName) {
         this.stock.extra.type = typeName;
+        return this;
+    };
+    StockBuilder.prototype.setByManual = function (obj) {
+        this.stock.name = obj.name;
+        this.stock.price = obj.price;
+        this.stock.totalPrice = obj.totalPrice;
+        this.stock.amount = obj.amount;
+        this.stock.max = obj.max;
+        this.stock.min = obj.min;
+        this.stock.priceChange = obj.priceChange;
+        this.stock.isArrive = obj.isArrive;
+        this.stock.extra = obj.extra;
         return this;
     };
     StockBuilder.prototype.build = function () {
@@ -103,6 +118,13 @@ var BankBuilder = /** @class */ (function () {
     function BankBuilder() {
         this.bank = new Bank();
     }
+    BankBuilder.prototype.setByManual = function (obj) {
+        this.bank.name = obj.name;
+        this.bank.debt = obj.debt;
+        this.bank.hasDebt = obj.hasDebt;
+        this.bank.interest = obj.interest;
+        return this;
+    };
     BankBuilder.prototype.setBankName = function (name) {
         this.bank.name = name;
         return this;

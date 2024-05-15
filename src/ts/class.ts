@@ -23,7 +23,7 @@ class Stock {
         this.priceChange.push(this.price);
     }
 
-    public buy(amount: number): void {
+    public buy(amount: number = 0): void {
         let _price = Number(buySellGatsu.value) * stock[nowInfo[0]].price;
 
         if(_price <= money) {
@@ -36,12 +36,13 @@ class Stock {
         }
     }
 
-    public sell(amount: number): void {
-
+    public sell(amount: number = null): void {
         if(this.amount > 0) {
-            money += amount * this.price * 0.94;
+            money += this.amount * this.price * 0.94;
             this.amount -= Number(buySellGatsu.value);
-            this.totalPrice -= amount * this.price;
+            this.totalPrice -= this.amount * this.price;
+            
+            priceUpdate();
 
             alert('판매 완료!!!!!!!!!');
         } else {
@@ -70,6 +71,20 @@ class StockBuilder {
 
     setType(typeName: string): StockBuilder {
         this.stock.extra.type = typeName;
+        return this;
+    }
+
+    setByManual(obj) {
+        this.stock.name = obj.name;
+        this.stock.price = obj.price;
+        this.stock.totalPrice = obj.totalPrice;
+        this.stock.amount = obj.amount;
+        this.stock.max = obj.max;
+        this.stock.min = obj.min;
+        this.stock.priceChange = obj.priceChange;
+        this.stock.isArrive = obj.isArrive;
+        this.stock.extra = obj.extra;
+        
         return this;
     }
 
@@ -122,6 +137,15 @@ class Bank {
 
 class BankBuilder {
     private bank: Bank;
+    
+    setByManual(obj) {
+        this.bank.name = obj.name;
+        this.bank.debt = obj.debt;
+        this.bank.hasDebt = obj.hasDebt;
+        this.bank.interest = obj.interest;
+
+        return this;
+    }
 
     constructor() {
         this.bank = new Bank();

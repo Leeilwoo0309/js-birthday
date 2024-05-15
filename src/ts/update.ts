@@ -22,7 +22,7 @@ function priceUpdate(): void {
     upDownPerCent = Math.floor((currentStockMoney / boughtStockMoney) * 10000 - 10000).toString(); 
     document.querySelector('#money').innerHTML = money.toFixed();
     document.querySelector('#stockCurrentPrice').innerHTML = `${currentStockMoney.toFixed()}원 (${upOrDownPercenStringReturner()})  `;
-    document.querySelector('#stockBoughtPrice').innerHTML = boughtStockMoney.toFixed();
+    // document.querySelector('#stockBoughtPrice').innerHTML = boughtStockMoney.toFixed();
 }
 
 function calcCurrentStockMoney() {
@@ -38,14 +38,29 @@ function calcCurrentStockMoney() {
     });
 }
 
-function upOrDownPercenStringReturner(upDownPerCent: String = Math.floor((currentStockMoney / boughtStockMoney) * 10000 - 10000).toString()) {
+function upOrDownPercenStringReturner(upDownPercent: String = Math.floor((currentStockMoney / boughtStockMoney) * 10000 - 10000).toString()) {
     calcCurrentStockMoney();
 
-    return `<span class="${ Number(upDownPerCent) > 1 ? "red" : "blue" }">${upDownPerCent.substring(0, upDownPerCent.length - 2) == ''
-        ? '▲ 0'
-        : upDownPerCent.substring(0, upDownPerCent.length - 2) == '-' ? '▼ 0' :
-        '▲ ' + upDownPerCent.substring(0, upDownPerCent.length - 2)
-        }.${upDownPerCent.substring(upDownPerCent.length - 2)}%</span>`
+    let _ret: string;
+    let _updownInnerSpan: string = upDownPercent.substring(0, upDownPercent.length - 2) + "." + upDownPercent.substring(upDownPercent.length - 2)
+
+    if (Number(upDownPercent) < 100 && Number(upDownPercent) > 0) {
+        _ret = '<span class="red">▲ 0' + _updownInnerSpan + "%</span>"
+    } else if (Number(upDownPercent) > -100 && Number(upDownPercent) < 0) {
+        _ret = '<span class="blue">▼ -0' + upDownPercent.substring(1, upDownPercent.length - 2) + "." + upDownPercent.substring(upDownPercent.length - 2) + "%</span>"
+    } else if (Number(upDownPercent) > 0) {
+        _ret = '<span class="red">▲ ' + _updownInnerSpan + "%</span>"
+    } else {
+        _ret = '<span class="blue">▼ ' + _updownInnerSpan + "%</span>"
+    }
+
+    return _ret;
+
+    // return `<span class="${ Number(upDownPerCent) > 1 ? "red" : "blue" }">${upDownPerCent.substring(0, upDownPerCent.length - 2) == ''
+    //     ? '▲ 0'
+    //     : upDownPerCent.substring(0, upDownPerCent.length - 2) == '-' ? '▼ 0' :
+    //     '▲ ' + upDownPerCent.substring(0, upDownPerCent.length - 2)
+    //     }.${upDownPerCent.substring(upDownPerCent.length - 2)}%</span>`
 }
 
 function startScreen() {

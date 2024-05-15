@@ -8,7 +8,7 @@ buyBtn.addEventListener('click', () => {
 });
 
 sellBtn.addEventListener('click', () => {
-    stock[nowInfo[0]].sell(Number(buySellGatsu.value));
+    stock[nowInfo[0]].sell();
 });
 
 lendBtn.addEventListener('click', () => {
