@@ -18,11 +18,12 @@ type StockExtra = {
     crisis: number
 }
 
-type Item = {
+type ItemType = {
     name: string,
     price: number,
     description: string,
     isBought: boolean,
+    buy: Function
 }
 
 type BankType = {
@@ -45,6 +46,6 @@ type SaveForm = {
     nowInfo: [number, number, number],
     nowMenu: number,
     stock: StockType[],
-    items: Item[],
+    items: ItemType[],
     bank: BankType[]
 }

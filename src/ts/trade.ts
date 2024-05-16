@@ -1,20 +1,25 @@
-const buyBtn: HTMLSpanElement = document.querySelector('#buy');
-const sellBtn: HTMLSpanElement = document.querySelector('#sell');
-const lendBtn: HTMLSpanElement = document.querySelector('#lend');
-const retBtn: HTMLSpanElement = document.querySelector('#ret');
+const _buyBtn: HTMLSpanElement = document.querySelector('#buy');
+const _sellBtn: HTMLSpanElement = document.querySelector('#sell');
+const _lendBtn: HTMLSpanElement = document.querySelector('#lend');
+const _retBtn: HTMLSpanElement = document.querySelector('#ret');
+const buyItemBtn: HTMLSpanElement = document.querySelector('#itemBuy');
 
-buyBtn.addEventListener('click', () => {
+_buyBtn.addEventListener('click', () => {
     stock[nowInfo[0]].buy();
 });
 
-sellBtn.addEventListener('click', () => {
+_sellBtn.addEventListener('click', () => {
     stock[nowInfo[0]].sell();
 });
 
-lendBtn.addEventListener('click', () => {
+_lendBtn.addEventListener('click', () => {
     bank[nowInfo[1]].lend();
 });
 
-retBtn.addEventListener('click', () => {
+_retBtn.addEventListener('click', () => {
     bank[nowInfo[1]].ret();
 });
+
+buyItemBtn.addEventListener('click', () => {
+    items[nowInfo[2]].buy();
+})

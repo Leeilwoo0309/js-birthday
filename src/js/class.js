@@ -118,13 +118,6 @@ var BankBuilder = /** @class */ (function () {
     function BankBuilder() {
         this.bank = new Bank();
     }
-    BankBuilder.prototype.setByManual = function (obj) {
-        this.bank.name = obj.name;
-        this.bank.debt = obj.debt;
-        this.bank.hasDebt = obj.hasDebt;
-        this.bank.interest = obj.interest;
-        return this;
-    };
     BankBuilder.prototype.setBankName = function (name) {
         this.bank.name = name;
         return this;
@@ -137,8 +130,67 @@ var BankBuilder = /** @class */ (function () {
         this.bank.interest = inter;
         return this;
     };
+    BankBuilder.prototype.setByManual = function (obj) {
+        this.bank.name = obj.name;
+        this.bank.debt = obj.debt;
+        this.bank.hasDebt = obj.hasDebt;
+        this.bank.interest = obj.interest;
+        return this;
+    };
     BankBuilder.prototype.build = function () {
         return this.bank;
     };
     return BankBuilder;
+}());
+var Item = /** @class */ (function () {
+    function Item() {
+        this.name = 'undefined';
+        this.price = 0;
+        this.description = 'undefined';
+        this.isBought = false;
+    }
+    Item.prototype.buy = function () {
+        if (money >= this.price && !this.isBought) {
+            money -= this.price;
+            this.isBought = true;
+            if (this.name == 'YM TV')
+                setNews();
+            alert("구매 완료!");
+        }
+        else if (this.isBought) {
+            alert("이미 구매한 상품입니다.");
+        }
+        else if (money < this.price) {
+            alert("돈이 부족합니다.");
+        }
+    };
+    return Item;
+}());
+var ItemBuilder = /** @class */ (function () {
+    function ItemBuilder() {
+        this.item = new Item();
+    }
+    ItemBuilder.prototype.setName = function (name) {
+        this.item.name = name;
+        return this;
+    };
+    ItemBuilder.prototype.setPrice = function (price) {
+        this.item.price = price;
+        return this;
+    };
+    ItemBuilder.prototype.setDescription = function (description) {
+        this.item.description = description;
+        return this;
+    };
+    ItemBuilder.prototype.setByManual = function (obj) {
+        this.item.name = obj.name;
+        this.item.price = obj.price;
+        this.item.description = obj.description;
+        this.item.isBought = obj.isBought;
+        return this;
+    };
+    ItemBuilder.prototype.build = function () {
+        return this.item;
+    };
+    return ItemBuilder;
 }());

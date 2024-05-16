@@ -1,16 +1,20 @@
-var buyBtn = document.querySelector('#buy');
-var sellBtn = document.querySelector('#sell');
-var lendBtn = document.querySelector('#lend');
-var retBtn = document.querySelector('#ret');
-buyBtn.addEventListener('click', function () {
+var _buyBtn = document.querySelector('#buy');
+var _sellBtn = document.querySelector('#sell');
+var _lendBtn = document.querySelector('#lend');
+var _retBtn = document.querySelector('#ret');
+var buyItemBtn = document.querySelector('#itemBuy');
+_buyBtn.addEventListener('click', function () {
     stock[nowInfo[0]].buy();
 });
-sellBtn.addEventListener('click', function () {
+_sellBtn.addEventListener('click', function () {
     stock[nowInfo[0]].sell();
 });
-lendBtn.addEventListener('click', function () {
+_lendBtn.addEventListener('click', function () {
     bank[nowInfo[1]].lend();
 });
-retBtn.addEventListener('click', function () {
+_retBtn.addEventListener('click', function () {
     bank[nowInfo[1]].ret();
+});
+buyItemBtn.addEventListener('click', function () {
+    items[nowInfo[2]].buy();
 });

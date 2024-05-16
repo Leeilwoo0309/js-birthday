@@ -74,3 +74,8 @@ function updateBank() {
     document.querySelector("#interest").innerHTML = (bank[nowInfo[1]].interest * 100).toString();
     document.querySelector("#leftDebt").innerHTML = bank[nowInfo[1]].getLeftReturnMoney().toFixed();
 }
+function updateItem() {
+    document.querySelector('#itemName').innerHTML = items[nowInfo[2]].name;
+    document.querySelector("#itemDes").innerHTML = items[nowInfo[2]].description;
+    document.querySelector("#itemPrice").innerHTML = items[nowInfo[2]].price.toFixed();
+}

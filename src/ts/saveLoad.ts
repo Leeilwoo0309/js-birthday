@@ -58,7 +58,7 @@ class FileManager {
         nowMenu = _content.nowMenu
         stock = [],
         bank = [],
-        // items = []
+        items = []
 
         _content.stock.forEach((e, i) => {
             stock.push(
@@ -70,6 +70,14 @@ class FileManager {
             bank.push(
                 new BankBuilder().setByManual(e).build()
             )
+        });
+
+        _content.items.forEach((e, i) => {
+            items.push(
+                new ItemBuilder().setByManual(e).build()
+            );
+
+            if (i == 0 && e.isBought) setNews();
         })
     }
 }

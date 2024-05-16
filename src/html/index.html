@@ -22,6 +22,7 @@
             <div id="list">
                 <div id="status">
                     <p>현재 돈: <span id="money">150,000</span>원</p>
+                    <p>주식 등락률은 상당히 부정확함!</p>
                     <!-- <p>총 주식 구매가: <span id="stockBoughtPrice">0</span>원</p> -->
                     <p>
                         현재 주가:  
@@ -70,6 +71,17 @@
                         <button id="ret">상환하기 (<span id="leftDebt">0</span>원)</button>
                     </div>
                 </div>
+                <div id="itemInfo">
+                    <h2 id="itemName">아이템 이름</h2>
+                    <hr>
+                    <div>
+                        <h3>"<span id="itemDes">설명</span>"</h3>
+                        <p>가격: <span id="itemPrice">40000</span>원</p>
+                        <hr>
+                        <br/>
+                        <button id="itemBuy">구매하기</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -79,6 +91,7 @@
     <script src="../js/variables.js"></script>
     <script src="../js/funcs.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/news.js"></script>
     <script src="../js/saveLoad.js"></script>
 </body>
 </html>

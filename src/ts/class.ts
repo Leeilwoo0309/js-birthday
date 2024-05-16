@@ -137,15 +137,6 @@ class Bank {
 
 class BankBuilder {
     private bank: Bank;
-    
-    setByManual(obj) {
-        this.bank.name = obj.name;
-        this.bank.debt = obj.debt;
-        this.bank.hasDebt = obj.hasDebt;
-        this.bank.interest = obj.interest;
-
-        return this;
-    }
 
     constructor() {
         this.bank = new Bank();
@@ -166,7 +157,77 @@ class BankBuilder {
         return this;
     }
 
+    setByManual(obj) {
+        this.bank.name = obj.name;
+        this.bank.debt = obj.debt;
+        this.bank.hasDebt = obj.hasDebt;
+        this.bank.interest = obj.interest;
+
+        return this;
+    }
+
+
     build(): Bank {
         return this.bank;
+    }
+}
+
+class Item {
+    public name: string = 'undefined';
+    public price: number = 0;
+    public description: string = 'undefined';
+    public isBought: boolean = false;
+
+    public buy() {
+        if (money >= this.price && !this.isBought) {
+            money -= this.price;
+            this.isBought = true;
+
+            if (this.name == 'YM TV') setNews();
+            
+            alert("구매 완료!");
+        } else if (this.isBought) {
+            alert("이미 구매한 상품입니다.");
+        } else if (money < this.price) {
+            alert("돈이 부족합니다.");
+        }
+
+    }
+}
+
+class ItemBuilder {
+    private item: Item;
+
+    constructor() {
+        this.item = new Item();
+    }
+
+    setName(name) {
+        this.item.name = name;
+        return this;
+    }
+
+    setPrice(price: number) {
+        this.item.price = price;
+        return this;
+    }
+
+    setDescription(description: string) {
+        this.item.description = description;
+        return this;
+    }
+
+    setByManual(obj) {
+        this.item.name = obj.name;
+        this.item.price = obj.price;
+        this.item.description = obj.description;
+        this.item.isBought = obj.isBought;
+
+        return this;
+    }
+
+
+    build() {
+        return this.item;
     }
 }

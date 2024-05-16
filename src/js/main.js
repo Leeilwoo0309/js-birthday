@@ -7,7 +7,14 @@ var stockChart = document.querySelector('#stockChart');
 var buyOrSellPriceDisplayer = document.querySelector('#sellOrBuyPrice');
 var buySellGatsu = document.querySelector('#buySellGatsu');
 var menu = document.querySelectorAll('.menu');
+var audio = new Audio('../sounds/bgm1.mp3');
+audio.play();
+audio.addEventListener('ended', function () {
+    if (!isStart)
+        audio.play();
+});
 startNewBtn.addEventListener('click', function () {
+    audio.pause();
     var startDiv = document.querySelector('#start');
     var startDived = document.querySelector('#started');
     startDiv.style.display = 'none';
@@ -15,6 +22,7 @@ startNewBtn.addEventListener('click', function () {
     isStart = true;
 });
 startLoadBtn.addEventListener('click', function () {
+    audio.pause();
     var startDiv = document.querySelector('#start');
     var startDived = document.querySelector('#started');
     startDiv.style.display = 'none';
@@ -42,7 +50,7 @@ items.forEach(function (e, i) {
     var storeItem = document.createElement("div");
     storeItem.id = "store-".concat(i);
     storeItem.classList.add('storeItem');
-    storeItem.append("".concat(e.name, ": \\").concat(e.price, " [\"").concat(e.description, "\"]"));
+    storeItem.append("".concat(e.name, ": \\").concat(e.price));
     store.appendChild(storeItem);
 });
 var stockListDivs = document.querySelectorAll('.stockList');
@@ -54,6 +62,8 @@ stockListDivs.forEach(function (e, i) {
         document.querySelector('#chart').style.display = '';
         //@ts-ignore
         document.querySelector('#bankInfo').style.display = 'none';
+        //@ts-ignore
+        document.querySelector('#itemInfo').style.display = 'none';
         document.querySelector("#stock-".concat(nowInfo[0])).classList.remove('on');
         nowInfo[0] = i;
         charts.push(drawChart(stock[i].priceChange));
@@ -102,9 +112,31 @@ bankListEachDiv.forEach(function (e, i) {
         document.querySelector('#chart').style.display = 'none';
         //@ts-ignore
         document.querySelector('#bankInfo').style.display = '';
+        //@ts-ignore
+        document.querySelector('#itemInfo').style.display = 'none';
         nowInfo[1] = i;
         document.querySelector("#bank-".concat(nowInfo[1])).classList.add('on');
         updateBank();
+    });
+});
+var itemListEachDiv = document.querySelectorAll('.storeItem');
+itemListEachDiv.forEach(function (e, i) {
+    e.addEventListener('click', function () {
+        if (!items[i].isBought) {
+            document.querySelector("#store-".concat(nowInfo[2])).classList.remove('on');
+            //@ts-ignore
+            document.querySelector('#chart').style.display = 'none';
+            //@ts-ignore
+            document.querySelector('#bankInfo').style.display = 'none';
+            //@ts-ignore
+            document.querySelector('#itemInfo').style.display = '';
+            nowInfo[2] = i;
+            document.querySelector("#store-".concat(nowInfo[2])).classList.add('on');
+            updateItem();
+        }
+        else {
+            alert("이미 구매한 상품입니다.");
+        }
     });
 });
 // 1초마다 실행하는거 (주식 가격 바꾸기..)
@@ -140,6 +172,17 @@ setInterval(function () {
                 money -= e.debt.max * 0.0001;
                 e.debt.now -= e.debt.max * 0.0001;
                 updateBank();
+            }
+        });
+        items.forEach(function (e, i) {
+            //@ts-ignore
+            document.querySelector("#store-".concat(i)).style.color = 'black';
+            if (e.isBought) {
+                //@ts-ignore
+                document.querySelector("#store-".concat(i)).style.color = 'rgb(200, 200, 200)';
+                //@ts-ignore
+                document.querySelector("#store-".concat(i)).style.backgroundColor = 'rgb(255, 236, 236)';
+                updateItem();
             }
         });
     }

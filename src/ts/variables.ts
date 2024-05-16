@@ -5,6 +5,7 @@ let boughtStockMoney: number = 0;
 let nowInfo: [number, number, number] = [0, 0, 0];
 let nowMenu: number = 0;
 let charts = [];
+let news: string[] = [];
 let stock: StockType[] = [
     new StockBuilder().setName("SJ's 톡킹").setPrice(50000).setType("서비스업").build(),
     new StockBuilder().setName("㈜ 천국김밥").setPrice(4500).setType("종교").build(),
@@ -20,38 +21,13 @@ let stock: StockType[] = [
     new StockBuilder().setName("대한민국").setPrice(1000000000000000).setType("국가 (國家)").build(),
 ];
 
-let items: Item[] = [
-    {
-        name: 'TV',
-        price: 1500000,
-        description: '주식에 대한 정보들을 알려줍니다. (실제 TV 아님)',
-        isBought: false
-    },
-    {
-        name: '빅맥',
-        price: 3860000000000,
-        description: "맥도날드가 지금껏 빅맥 팔아서 번 돈",
-        isBought: false
-    },
-    {
-        name: '강남에 빌딩',
-        price: 9743200000000000000,
-        description: "강남 빌딩 가격 × 대한민국 인구 수",
-        isBought: false
-    },
-    {
-        name: '초코송이',
-        price: 4320000000,
-        description: "초코송이 가격 * 초코송이 상품 사진 크기²",
-        isBought: false
-    },
-    {
-        name: '의문의 동영상',
-        price: 10000000000000000000,
-        description: "직박구리",
-        isBought: false
-    }
-]
+let items: ItemType[] = [
+    new ItemBuilder().setName('YM TV').setPrice(150000).setDescription('주식에 대한 정보들을 알려줍니다. (실제 TV 아님)').build(),
+    new ItemBuilder().setName('맥도날드 빅맥').setPrice(3860000000000).setDescription('맥도날드가 지금껏 빅맥 팔아서 번 돈').build(),
+    new ItemBuilder().setName('강남에 빌딩').setPrice(9743200000000000000).setDescription('강남 빌딩 가격 × 대한민국 인구 수').build(),
+    new ItemBuilder().setName('초코송이').setPrice(4320000000).setDescription('초코송이 가격 * 초코송이 상품 사진 크기²').build(),
+    new ItemBuilder().setName('의문의 동영상').setPrice(10000000000000000000).setDescription('직박구리').build()
+];
 
 let bank: BankType[] = [
     new BankBuilder().setBankName("신안은행 ─ 언제나 소금같은 마음으로").setDebtLimitation(5900).setInterest(0.04).build(),

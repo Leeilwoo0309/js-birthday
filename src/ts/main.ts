@@ -7,8 +7,16 @@ const stockChart: HTMLCanvasElement = document.querySelector('#stockChart');
 const buyOrSellPriceDisplayer: HTMLSpanElement = document.querySelector('#sellOrBuyPrice');
 const buySellGatsu: HTMLInputElement = document.querySelector('#buySellGatsu');
 const menu: NodeList = document.querySelectorAll('.menu');
+const audio = new Audio('../sounds/bgm1.mp3');
+
+audio.play();
+
+audio.addEventListener('ended', () => {
+    if (!isStart) audio.play()
+})
 
 startNewBtn.addEventListener('click', () => {
+    audio.pause();
     const startDiv: HTMLDivElement = document.querySelector('#start')
     const startDived: HTMLDivElement = document.querySelector('#started')
 
@@ -19,6 +27,7 @@ startNewBtn.addEventListener('click', () => {
 });
 
 startLoadBtn.addEventListener('click', () => {
+    audio.pause();
     const startDiv: HTMLDivElement = document.querySelector('#start')
     const startDived: HTMLDivElement = document.querySelector('#started')
 
@@ -57,10 +66,10 @@ items.forEach((e, i) => {
     storeItem.id = `store-${i}`;
     storeItem.classList.add('storeItem');
 
-    storeItem.append(`${e.name}: \\${e.price} ["${e.description}"]`);
+    storeItem.append(`${e.name}: \\${e.price}`);
 
     store.appendChild(storeItem);
-})
+});
 
 const stockListDivs: NodeList = document.querySelectorAll('.stockList');
 const bankListDivs: NodeList = document.querySelectorAll('.bank');
@@ -72,6 +81,8 @@ stockListDivs.forEach((e, i) => {
         document.querySelector('#chart').style.display = '';
         //@ts-ignore
         document.querySelector('#bankInfo').style.display = 'none';
+        //@ts-ignore
+        document.querySelector('#itemInfo').style.display = 'none';
 
         document.querySelector(`#stock-${nowInfo[0]}`).classList.remove('on');
         nowInfo[0] = i;
@@ -130,10 +141,33 @@ bankListEachDiv.forEach((e: HTMLDivElement, i: number) => {
         document.querySelector('#chart').style.display = 'none';
         //@ts-ignore
         document.querySelector('#bankInfo').style.display = '';
+        //@ts-ignore
+        document.querySelector('#itemInfo').style.display = 'none';
         
         nowInfo[1] = i;
         document.querySelector(`#bank-${nowInfo[1]}`).classList.add('on');
         updateBank();
+    })
+});
+
+const itemListEachDiv: NodeList = document.querySelectorAll('.storeItem');
+itemListEachDiv.forEach((e: HTMLDivElement, i: number) => {
+    e.addEventListener('click', () => {
+        if (!items[i].isBought) {
+            document.querySelector(`#store-${nowInfo[2]}`).classList.remove('on');
+            //@ts-ignore
+            document.querySelector('#chart').style.display = 'none';
+            //@ts-ignore
+            document.querySelector('#bankInfo').style.display = 'none';
+            //@ts-ignore
+            document.querySelector('#itemInfo').style.display = '';
+            
+            nowInfo[2] = i;
+            document.querySelector(`#store-${nowInfo[2]}`).classList.add('on');
+            updateItem();
+        } else {
+            alert("이미 구매한 상품입니다.");
+        }
     })
 })
 
@@ -178,7 +212,21 @@ setInterval(() => {
 
                 updateBank();
             }
-        })
+        });
+
+        items.forEach((e: ItemType, i: number) => {
+            //@ts-ignore
+            document.querySelector(`#store-${i}`).style.color = 'black';
+            if (e.isBought) {
+                //@ts-ignore
+                document.querySelector(`#store-${i}`).style.color = 'rgb(200, 200, 200)'
+                //@ts-ignore
+                document.querySelector(`#store-${i}`).style.backgroundColor = 'rgb(255, 236, 236)'
+
+                updateItem();
+            }
+        });
+
     }
 
 }, 1000);

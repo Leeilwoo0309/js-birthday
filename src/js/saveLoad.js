@@ -97,12 +97,17 @@ var FileManager = /** @class */ (function () {
                 nowMenu = _content.nowMenu;
                 stock = [],
                     bank = [],
-                    // items = []
-                    _content.stock.forEach(function (e, i) {
-                        stock.push(new StockBuilder().setByManual(e).build());
-                    });
+                    items = [];
+                _content.stock.forEach(function (e, i) {
+                    stock.push(new StockBuilder().setByManual(e).build());
+                });
                 _content.bank.forEach(function (e) {
                     bank.push(new BankBuilder().setByManual(e).build());
+                });
+                _content.items.forEach(function (e, i) {
+                    items.push(new ItemBuilder().setByManual(e).build());
+                    if (i == 0 && e.isBought)
+                        setNews();
                 });
                 return [2 /*return*/];
             });
