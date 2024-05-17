@@ -14,19 +14,19 @@ function setNews() {
             ],
             [
                 ["\u321C \uCC9C\uAD6D\uAE40\uBC25\uC5D0\uC11C COVID-19 \uC9D1\uB2E8 \uAC10\uC5FC\uB3FC..", -1],
-                ["\u321C \uCC9C\uAD6D\uAE40\uBC25, 360\u00BA \uB2EC\uB77C\uC9C4 \uBAA8\uC2B5 \uBCF4\uC5EC\uC918", 0],
+                ["\u321C \uCC9C\uAD6D\uAE40\uBC25, 360\u00BA\uB97C \uB118\uC5B4\uC120 1080\u00BA \uB2EC\uB77C\uC9C4 \uBAA8\uC2B5 \uBCF4\uC5EC\uC918", 0],
                 ["\u321C \uCC9C\uAD6D\uAE40\uBC25, \uC2E0\uB3C4\uC790 \uC218 \uC791\uB144\uC5D0 \uBE44\uD574 17.4% \uC0C1\uC2B9\uD574.. \"\uB300\uBC15~\"", 1],
             ],
             [
                 ["\uC5B4\uC9C4\uC804\uC790 \uC2E0\uC81C\uD488\uC5D0\uC11C \uCE58\uBA85\uC801 \uACB0\uD568 \uBC1C\uACAC", -1],
-                ["\uC5B4\uC9C4\uC804\uC790, \uC5B4\uC81C \uC800\uB141\uC73C\uB85C \uC11D\uAC08\uBE44 \uBA39\uC5B4..", 0],
-                ["\uC5B4\uC9C4\uC804\uC790, \uC5B4\uC81C \uC800\uB141\uC73C\uB85C \uC11D\uAC08\uBE44 \uBA39\uC5B4..", 0],
+                ["\uC5B4\uC9C4\uC804\uC790, \uC5B4\uC81C \uC800\uB141\uC73C\uB85C \uC11D\uAC08\uBE44\uC640 \uB0C9\uBA74 \uBA39\uC5B4..", 0],
+                ["\uC5B4\uC9C4\uC804\uC790, \uC5B4\uC81C \uC800\uB141\uC73C\uB85C \uC11D\uAC08\uBE44\uC640 \uB0C9\uBA74 \uBA39\uC5B4..", 0],
                 ["\uC5B4\uC9C4\uC804\uC790, \uC218\uCD9C \uC601\uC5C5\uC774\uC775 \"\uC5ED\uB300 \uCD5C\uACE0\"", 1],
             ],
             [
                 ["YMT \uC218\uD559 \uAD50\uC2B5\uC18C \uC11C \uC131\uAD50\uC721 \uD558\uB2E4\uAC00 \uAC78\uB824.. \uD559\uBD80\uBAA8\uB4E4 \"\uACBD\uC545\"", -1],
                 ["YMT \uC218\uD559 \uAD50\uC2B5\uC18C \uC11C \uC131\uAD50\uC721 \uD558\uB2E4\uAC00 \uAC78\uB824.. \uD559\uBD80\uBAA8\uB4E4 \"\uACBD\uC545\"", -1],
-                ["YMT \uC218\uD559 \uAD50\uC2B5\uC18C \uC6D0\uC7A5, \uC5F4\uC560\uC124 \uD130\uC838.. \uC0C1\uB300\uB294 18\uC138 \"\uC2E0\uC7AC\uC6B1\"", 1],
+                ["YMT \uC218\uD559 \uAD50\uC2B5\uC18C \uC6D0\uC7A5, \uC5F4\uC560\uC124 \uD130\uC838.. \uC0C1\uB300\uB294 18\uC138 \"\uC2E0\uC7AC\uC6B1\"", -1],
                 ["YMT \uC218\uD559 \uAD50\uC2B5\uC18C \uC11C \uBAA8\uB4E0 \uD559\uC0DD 1\uB4F1\uAE09 \uB2EC\uC131.. \uADF8 \uBE44\uACB0\uC740?", 1],
             ],
             [
@@ -72,10 +72,22 @@ function setNews() {
                 ["\uD0AC\uB85C\uC2A4\uD130\uB514 \uC218\uAC15\uC0DD 1500\uB9CC\uBA85 \uB3CC\uD30C.. \"\uC138\uACC4\uC801 \uAD50\uC721 \uD50C\uB7AB\uD3FC\uC73C\uB85C \uBC1C\uB3CB\uC6C0\"", 1],
             ],
             [
-                ['野 새로운 정책에 대국민 환호.. 김어진 "흐믓"', 1],
+                ["VIRUS \uC81C\uC57D, \uC2E0\uC57D \uAC1C\uBC1C \uB300\uC131\uACF5..", 1],
+                ["VIRUS \uC81C\uC57D, \uC2E0\uC57D \uAC1C\uBC1C \uC11C \uC5C4\uCCAD\uB09C \uC0AC\uC2E4 \uBC1C\uACAC..", 1],
+                ["VIRUS \uC81C\uC57D, \uC784\uC0C1 \uC2E4\uD5D8 \uC911 \uC2DC\uD5D8\uC790 \uC0AC\uB9DD.. \uC720\uAC00\uC871 \"\uC808\uB9DD\"", -1],
+                ["VIRUS \uC81C\uC57D\uC11C \uCD9C\uC2DC\uD55C \uC2E0\uC57D, \uC54C\uACE0\uBCF4\uB2C8 \uD6C4\uCFE0\uC2DC\uB9C8\uC0B0 \uBC29\uC0AC\uC131 \uC6D0\uC18C \uD568\uC720.. \"\uB17C\uB780\"", -1],
+            ],
+            [
+                ["NO-SM\uC758 \uAC00\uC218 \uB178\uC2B9\uBBFC, \uC815\uACC4\uC5D0 \uC9C4\uCD9C.. \"\uB73B\uBC16\"", -1],
+                ["NO-SM, \uB2E8\uC6D4\uB4DC\uC640 \uBC00\uC811\uD55C \uAD00\uACC4..", -1],
+                ["NO-SM, \uB300\uD45C \uB178\uAC74\uD0DC \uC0AC\uD1F4.. \"\uBCC0\uD654\uC758 \uBC14\uB78C\"", 1],
+                ["NO-SM \uB300\uD45C \uC640\uC774\uD504, \uBD88\uAC74\uC804\uD55C \uCDE8\uBBF8 \uB4E4\uCF1C.. \"\uC774\uAC8C \uC8C4\uB0D0\"", -1],
+            ],
+            [
+                ['野 새로운 정책에 대국민 환호.. 김어진 "야릇한 쿼크가 돼"', 1],
                 ['與 정권 잡아.. 김어진 "역대급 분노"', 0],
                 ['與 정권 잡아.. 김어진 "역대급 분노"', 0],
-                ['中, 習近平 尹과 멋진 소주 한잔 마셔..', 0]
+                ['習近平, 尹과 멋진 소주 한잔 마셔..', 0]
             ]
         ];
         news.push(_stockPredict[_newsStock][_newsContent][0]);

@@ -35,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var fs = require("fs");
+var cryptoJS = require("crypto-js");
 var FileManager = /** @class */ (function () {
     function FileManager() {
         var _this = this;
@@ -48,12 +49,11 @@ var FileManager = /** @class */ (function () {
             items: [],
             bank: []
         };
-        fs.readFile('./src/json/save.json', function (err, data) {
+        fs.readFile('./src/saves/save.sj', function (err, data) {
             if (err)
                 throw err;
-            var _content = JSON.parse(data);
-            console.log(_content);
-            _this.file = _content;
+            var _content = cryptoJS.AES.decrypt(data.toString(), 'jewukseojin').toString(cryptoJS.enc.Utf8);
+            _this.file = JSON.parse(_content);
         });
     }
     FileManager.prototype.save = function () {
@@ -72,8 +72,8 @@ var FileManager = /** @class */ (function () {
                             items: items,
                             bank: bank
                         };
-                        _saveContent = JSON.stringify(this.fileForm);
-                        return [4 /*yield*/, fs.writeFileSync("./src/json/save.json", _saveContent, function (err) {
+                        _saveContent = cryptoJS.AES.encrypt(JSON.stringify(this.fileForm), 'jewukseojin').toString();
+                        return [4 /*yield*/, fs.writeFileSync("./src/saves/save.sj", _saveContent, function (err) {
                                 console.error("Err: ".concat(err));
                             })];
                     case 1:
@@ -88,27 +88,32 @@ var FileManager = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var _content;
             return __generator(this, function (_a) {
-                _content = this.file;
-                console.log(_content);
-                money = _content.money;
-                currentStockMoney = _content.currentStockMoney;
-                boughtStockMoney = _content.boughtStockMoney;
-                nowInfo = _content.nowInfo;
-                nowMenu = _content.nowMenu;
-                stock = [],
-                    bank = [],
-                    items = [];
-                _content.stock.forEach(function (e, i) {
-                    stock.push(new StockBuilder().setByManual(e).build());
-                });
-                _content.bank.forEach(function (e) {
-                    bank.push(new BankBuilder().setByManual(e).build());
-                });
-                _content.items.forEach(function (e, i) {
-                    items.push(new ItemBuilder().setByManual(e).build());
-                    if (i == 0 && e.isBought)
-                        setNews();
-                });
+                try {
+                    _content = this.file;
+                    console.log(_content);
+                    money = _content.money;
+                    currentStockMoney = _content.currentStockMoney;
+                    boughtStockMoney = _content.boughtStockMoney;
+                    nowInfo = _content.nowInfo;
+                    nowMenu = _content.nowMenu;
+                    stock = [],
+                        bank = [],
+                        items = [];
+                    _content.stock.forEach(function (e, i) {
+                        stock.push(new StockBuilder().setByManual(e).build());
+                    });
+                    _content.bank.forEach(function (e) {
+                        bank.push(new BankBuilder().setByManual(e).build());
+                    });
+                    _content.items.forEach(function (e, i) {
+                        items.push(new ItemBuilder().setByManual(e).build());
+                        if (i == 0 && e.isBought)
+                            setNews();
+                    });
+                }
+                catch (err) {
+                    alert("\uC800\uC7A5 \uD30C\uC77C \uC190\uC2E4\uB428 (".concat(err, ")"));
+                }
                 return [2 /*return*/];
             });
         });

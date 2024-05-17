@@ -18,6 +18,7 @@ let stock: StockType[] = [
     new StockBuilder().setName("Eng-Vidia").setPrice(1200000).setType("반도체 사업").build(),
     new StockBuilder().setName("비상(Emergency)교육").setPrice(5000).setType("출판사/교과서").build(),
     new StockBuilder().setName("킬로스터디").setPrice(59900).setType("인터넷 강의").build(),
+    new StockBuilder().setName("VIRUS 제약").setPrice(75000).setType("제약").build(),
     new StockBuilder().setName("대한민국").setPrice(1000000000000000).setType("국가 (國家)").build(),
 ];
 
@@ -34,5 +35,6 @@ let bank: BankType[] = [
     new BankBuilder().setBankName("㈜ 어진 (사시미)사채").setDebtLimitation(38000000).setInterest(0.3).build(),
     new BankBuilder().setBankName("KB우리국민하나SC제일은행").setDebtLimitation(39900).setInterest(0.1).build(),
     new BankBuilder().setBankName("한화머니").setDebtLimitation(1000).setInterest(0.65).build(),
+    new BankBuilder().setBankName("US Bank").setDebtLimitation(35000).setInterest(0.08).build(),
     new BankBuilder().setBankName("조선민주주의인민공화국 중앙은행").setDebtLimitation(300).setInterest(30).build(),
 ]

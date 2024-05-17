@@ -1,4 +1,5 @@
 const fs = require("fs");
+const cryptoJS = require("crypto-js");
 
 class FileManager {
     private file: SaveForm;
@@ -14,14 +15,12 @@ class FileManager {
     }
 
     constructor() {
-        fs.readFile('./src/json/save.json', (err, data) => {
+        fs.readFile('./src/saves/save.sj', (err, data) => {
             if (err) throw err;
 
-            const _content = JSON.parse(data);
+            const _content = cryptoJS.AES.decrypt(data.toString(), 'jewukseojin').toString(cryptoJS.enc.Utf8);
 
-            console.log(_content)
-
-            this.file = _content;
+            this.file = JSON.parse(_content);
         });
     }
 
@@ -36,10 +35,10 @@ class FileManager {
             items: items,
             bank: bank
         }
+        
+        const _saveContent = cryptoJS.AES.encrypt(JSON.stringify(this.fileForm), 'jewukseojin').toString();
 
-        const _saveContent = JSON.stringify(this.fileForm);
-
-        await fs.writeFileSync("./src/json/save.json", _saveContent, (err) => {
+        await fs.writeFileSync("./src/saves/save.sj", _saveContent, (err) => {
             console.error(`Err: ${err}`)
         });
 
@@ -47,7 +46,8 @@ class FileManager {
     }
 
     async load() {
-        const _content: SaveForm = this.file;
+        try {
+            const _content: SaveForm = this.file;
 
         console.log(_content)
 
@@ -79,6 +79,10 @@ class FileManager {
 
             if (i == 0 && e.isBought) setNews();
         })
+        } catch (err) {
+            alert(`저장 파일 손실됨 (${err})`)
+        }
+        
     }
 }
 

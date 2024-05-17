@@ -29,7 +29,7 @@ const menuTemplate = [
 ]
 
 const menu = Menu.buildFromTemplate(menuTemplate);
-// Menu.setApplicationMenu(menu)
+Menu.setApplicationMenu(menu)
 
 function createWindow () {
     const win = new BrowserWindow({
